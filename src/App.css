@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.Footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
