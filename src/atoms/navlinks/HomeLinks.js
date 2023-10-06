@@ -7,18 +7,18 @@ const NavLink = ({ text, url }) => (
   </a>
 );
 
-const HomeLinks = () => {
+const HomeLinks = ({landingRef, aboutRef, footerRef}) => {
   return (
     <>
       <div className="hidden md:flex space-x-4">
         <NavLink text="Service" url="#" />
-        <NavLink text="About" url="#" />
-        <NavLink text="Contact Us" url="#" />
+        <NavLink text="About" url="#about" />
+        <NavLink text="Contact Us" url="#footer" />
       </div>
       <div className="md:hidden">
         <NavLink text="Services" url="#" />
-        <NavLink text="About" url="#" />
-        <NavLink text="Contact Us" url="#" />
+        <NavLink text="About" url="#about" />
+        <NavLink text="Contact Us" url="#footer" />
       </div>
     </>
   );

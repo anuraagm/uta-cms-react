@@ -2,10 +2,11 @@ import React from 'react';
 import insta from './insta.png'
 import fb from './fb.png'
 import li from './li.png'
+import ButtonPrimary from '../../atoms/buttons/ButtonPrimary/ButtonPrimary';
 
 const Footer = () => {
   return (
-    <footer className="Footer bg-blue text-white py-12">
+    <footer className="Footer bg-blue text-white py-12" id='footer'>
       <div className="container mx-auto flex flex-col md:flex-row justify-between px-4">
         <div className="mb-6 md:mb-0 md:w-1/2">
           <h2 className="text-xl font-semibold mb-4">Have questions? Just send us an email!</h2>
@@ -33,7 +34,7 @@ const Footer = () => {
             <div className="mb-4">
               <textarea id="message" name="message" placeholder="Your Message" rows="4" className="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 bg-blue-100 bg-opacity-50 px-4 py-2 text-black"></textarea>
             </div>
-            <button type="submit" className="bg-orange text-white px-4 py-2 rounded-lg hover:bg-blue-600 self-start md:self-auto">Submit</button>
+            <ButtonPrimary buttonText={"Submit"}></ButtonPrimary>
           </form>
         </div>
         
@@ -51,13 +52,13 @@ const Footer = () => {
             <div className="mb-4">
               <h2 className="text-xl font-semibold mb-2">Follow Us</h2>
               <div className="flex justify-center space-x-4">
-                <a href="https://www.instagram.com/utarlington/?hl=en" className="text-white hover:text-blue-500">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/utarlington/?hl=en" className="text-white hover:text-blue-500">
                   <img src={insta} alt='Instagram'/>
                 </a>
-                <a href="https://www.linkedin.com/school/university-of-texas-at-arlington/" className="text-white hover:text-blue-500">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/school/university-of-texas-at-arlington/" className="text-white hover:text-blue-500">
                   <img src={li} alt='LinkedIn'/>
                 </a>
-                <a href="https://www.facebook.com/utarlington/" className="text-white hover:text-blue-500">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/utarlington/" className="text-white hover:text-blue-500">
                   <img src={fb} alt='Facebook'/>
                 </a>
               </div>
