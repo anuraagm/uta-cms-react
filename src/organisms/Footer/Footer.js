@@ -6,7 +6,7 @@ import ButtonPrimary from '../../atoms/buttons/ButtonPrimary/ButtonPrimary';
 
 const Footer = () => {
   return (
-    <footer className="Footer bg-blue text-white py-12">
+    <footer className="Footer bg-blue text-white py-12" id='footer'>
       <div className="container mx-auto flex flex-col md:flex-row justify-between px-4">
         <div className="mb-6 md:mb-0 md:w-1/2">
           <h2 className="text-xl font-semibold mb-4">Have questions? Just send us an email!</h2>

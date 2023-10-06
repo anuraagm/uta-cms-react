@@ -3,9 +3,18 @@ import stock from './students-stock.png';
 import image1 from './cs-stud.jpeg';
 import image2 from './cs-expert.jpeg';
 import image3 from './scores.jpeg';
+import { useRef } from 'react';
+import Footer from '../../organisms/Footer/Footer';
+import Header from '../../organisms/Header/Header';
 
 function Home() {
+
+  const landingRef = useRef();
+  const aboutRef = useRef();
+  const footerRef = useRef();
+
   const images = [image1, image2, image3];
+  
   const texts = [
     {
       title: "What is this program about?",
@@ -26,7 +35,10 @@ function Home() {
 
   return (
     <div className='Home'>
-      <div className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url(${stock})` }}>
+      
+      <Header landingRef={landingRef} aboutRef={aboutRef} footerRef={footerRef}></Header>
+
+      <div className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url(${stock})` }} id='landing' ref={landingRef}>
         <div className="absolute bottom-0 right-0 bg-blue bg-opacity-80 p-4 md:w-1/3 md:p-16">
           <h1 className='text-white text-lg md:text-2xl lg:text-2xl xl:text-2xl font-bold pb-4 md:pb-4 md:text-left'>
             Welcome to UTA CMS!
@@ -40,7 +52,7 @@ function Home() {
           <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"}></ButtonPrimary>
         </div>
       </div>
-      <div className="bg-white p-8 md:p-16">
+      <div className="bg-white p-8 md:p-16" id='about' ref={aboutRef}>
         <div className="grid grid-cols-1 md:grid-cols-1 gap-6 relative">
           {images.map((image, index) => (
             <div
@@ -49,13 +61,13 @@ function Home() {
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}
             >
-              <div className="max-w-full h-auto md:w-1/2 relative mx-auto md:mx-0">
-                <img src={image} alt={`Image ${index + 1}`} className='justify-center w-4/5 ml-14'/>
-                <div className="absolute w-4/5 inset-0 bg-blue bg-opacity-70 flex items-center justify-center ml-14">
+              <div className="max-w-full h-auto md:w-1/2 relative mx-auto md:mx-0 my-12">
+                <img src={image} alt={`Image ${index + 1}`} className='justify-center w-4/5 ml-8 lg:ml-14'/>
+                <div className="absolute w-4/5 inset-0 bg-blue bg-opacity-70 flex items-center justify-center ml-8 lg:ml-14">
                   <p className="text-white text-xl font-bold">{texts[index].title}</p>
                 </div>
               </div>
-              <div className="text-xl font-bold mt-2 md:w-1/2 p-24">
+              <div className="text-xl font-bold mt-2 md:w-1/2 lg:p-24">
                 {/* Using dangerouslySetInnerHTML to render the HTML */}
                 <div dangerouslySetInnerHTML={{ __html: texts[index].description }} />
               </div>
@@ -63,6 +75,7 @@ function Home() {
           ))}
         </div>
       </div>    
+      <Footer ref={footerRef}></Footer>
     </div>
   );
 }

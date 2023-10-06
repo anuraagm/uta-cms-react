@@ -4,7 +4,9 @@ import logo from "./uta-logo.png";
 import "./Header.css";
 import HomeLinks from "../../atoms/navlinks/HomeLinks";
 
-const Header = () => {
+const Header = ({landingRef, aboutRef, footerRef}) => {
+
+  
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -18,7 +20,7 @@ const Header = () => {
             <a href="/"> <img src={logo} alt="Logo" className="h-12 w-auto mr-2 max-w-logo" /></a>
         </div>
         <div className="hidden md:flex space-x-4">
-          <HomeLinks />
+          <HomeLinks landingRef={landingRef} aboutRef={aboutRef} footerRef={footerRef}/>
         </div>
         <div className="md:hidden">
           <button

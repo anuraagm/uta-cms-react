@@ -1,0 +1,14 @@
+Atoms < Molecule < Organism < Template < Page 
+
+Home Page {
+    Header Component {
+        About Button
+        Contact Button
+    }
+    Home Definition {
+        About Section   
+    }
+    Footer Component {
+        Contact Section
+    }
+}
