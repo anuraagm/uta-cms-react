@@ -67,7 +67,7 @@ function Home() {
                   <p className="text-white text-xl font-bold">{texts[index].title}</p>
                 </div>
               </div>
-              <div className="text-xl font-bold mt-2 md:w-1/2 lg:p-24">
+              <div className="md:text-xl sm:text-md font-bold mt-2 md:w-1/2 lg:p-24">
                 {/* Using dangerouslySetInnerHTML to render the HTML */}
                 <div dangerouslySetInnerHTML={{ __html: texts[index].description }} />
               </div>
