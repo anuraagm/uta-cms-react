@@ -1,6 +1,6 @@
 function SubjectCard({ cardTitle, classDetails, semester, color }) {
     return (
-        <div className="SubjectCard bg-white rounded-sm shadow-lg p-4 border md:w-1/6 sm:w-1/2 mx-16 my-12 transition-transform transform hover:shadow-xl hover:bg-gray-100 hover:cursor-pointer hover:scale-105">
+        <div className="SubjectCard bg-white rounded-sm shadow-lg p-2 border md:w-1/6 sm:w-1/2 mx-16 my-6 transition-transform transform hover:shadow-xl hover:bg-gray-100 hover:cursor-pointer hover:scale-105">
             <div className={`Title bg-${color} text-xl font-bold p-12`}>
                 {cardTitle}
             </div>
