@@ -38,11 +38,11 @@ function StudentDashboard() {
     }
   ];
 
-  const colors = ['yellow', 'pink', 'green'];
+  const colors = ['bg-yellow', 'bg-pink', 'bg-green'];
 
   return (
     <div className="StudentDashboard">
-      <div className="CurrentSubjects text-lg">
+      <div className="CurrentSubjects text-lg  md:text-md">
         <div className="Heading mx-16 text-left">
             Current Subjects
         </div>

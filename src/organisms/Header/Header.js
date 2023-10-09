@@ -1,26 +1,50 @@
-// Header.js
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "./uta-logo.png";
 import "./Header.css";
 import HomeLinks from "../../atoms/navlinks/HomeLinks";
+import StudentLinks from "../../atoms/navlinks/StudentLinks";
+// import InstructorLinks from "../../atoms/navlinks/InstructorLinks"; // Import InstructorLinks
+// import AdminLinks from "../../atoms/navlinks/AdminLinks"; // Import AdminLinks
+// import QALinks from "../../atoms/navlinks/QALinks"; // Import QALinks
+// import CoordinatorLinks from "../../atoms/navlinks/CoordinatorLinks"; // Import CoordinatorLinks
 
-const Header = ({landingRef, aboutRef, footerRef}) => {
-
-  
+const Header = ({ landingRef, aboutRef, footerRef, userRole }) => { // Pass userRole as a prop
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  // Define a function to render the appropriate links based on the user role
+  const renderLinks = () => {
+    switch (userRole) {
+      case "student":
+        return <StudentLinks />;
+      // case "instructor":
+      //   return <InstructorLinks />;
+      // case "admin":
+      //   return <AdminLinks />;
+      // case "qa":
+      //   return <QALinks />;
+      // case "coordinator":
+      //   return <CoordinatorLinks />;
+      default:
+        return <HomeLinks landingRef={landingRef} aboutRef={aboutRef} footerRef={footerRef} />;
+    }
   };
 
   return (
     <nav className="Header bg-blue p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-            <a href="/"> <img src={logo} alt="Logo" className="h-12 w-auto mr-2 max-w-logo" /></a>
+          <Link to="/">
+            <img src={logo} alt="Logo" className="h-12 w-auto mr-2 max-w-logo" />
+          </Link>
         </div>
         <div className="hidden md:flex space-x-4">
-          <HomeLinks landingRef={landingRef} aboutRef={aboutRef} footerRef={footerRef}/>
+          {renderLinks()} {/* Call the renderLinks function */}
         </div>
         <div className="md:hidden">
           <button
@@ -46,9 +70,9 @@ const Header = ({landingRef, aboutRef, footerRef}) => {
       </div>
       {mobileMenuOpen && (
         <div className="md:hidden bg-blue-500 py-4">
-            <HomeLinks />
+          {renderLinks()} {/* Call the renderLinks function */}
         </div>
-        )}
+      )}
     </nav>
   );
 };
