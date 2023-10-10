@@ -9,10 +9,9 @@ import StudentLinks from "../../atoms/navlinks/StudentLinks";
 // import QALinks from "../../atoms/navlinks/QALinks"; // Import QALinks
 // import CoordinatorLinks from "../../atoms/navlinks/CoordinatorLinks"; // Import CoordinatorLinks
 
-const Header = ({ landingRef, aboutRef, footerRef, userRole }) => { // Pass userRole as a prop
+const Header = ({ landingRef, aboutRef, footerRef, userRole, setStudentOption }) => { // Pass userRole as a prop
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-
+  
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -21,15 +20,7 @@ const Header = ({ landingRef, aboutRef, footerRef, userRole }) => { // Pass user
   const renderLinks = () => {
     switch (userRole) {
       case "student":
-        return <StudentLinks />;
-      // case "instructor":
-      //   return <InstructorLinks />;
-      // case "admin":
-      //   return <AdminLinks />;
-      // case "qa":
-      //   return <QALinks />;
-      // case "coordinator":
-      //   return <CoordinatorLinks />;
+        return <StudentLinks setOption={setStudentOption}/>;
       default:
         return <HomeLinks landingRef={landingRef} aboutRef={aboutRef} footerRef={footerRef} />;
     }
