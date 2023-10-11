@@ -71,7 +71,7 @@ function CourseCatalogue({ setStudentCourse }) {
                 classDetails={course.details}
                 semester={course.semester}
                 color={colors[index % colors.length]}
-                onClick={handleSubjectCardClick}
+                onClick={() => {}}
               />
             </div>
           ))}
