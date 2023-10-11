@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SubjectCard from "../../molecules/Cards/SubjectCard/SubjectCard";
-import { useNavigate } from 'react-router-dom';
 
-function StudentDashboard({ setStudentCourse }) {
-  const navigate = useNavigate();
-
+function CourseCatalogue({ setStudentCourse }) {
   const currentSubjectsData = [
     {
       title: "Web Data Management",
@@ -21,9 +18,6 @@ function StudentDashboard({ setStudentCourse }) {
       details: "CSE 6331-001",
       semester: "Fall 2023",
     },
-  ];
-
-  const pastSubjectsData = [
     {
       title: "Machine Learning",
       details: "CSE 6361-003",
@@ -43,41 +37,35 @@ function StudentDashboard({ setStudentCourse }) {
 
   const colors = ['bg-yellow', 'bg-pink', 'bg-green'];
 
+  const [searchInput, setSearchInput] = useState('');
+
   const handleSubjectCardClick = (courseTitle) => {
     setStudentCourse(courseTitle);
   };
 
-  function navigateToStudentCourse(courseName) {
-    navigate(`/student/course/${courseName}`);
-  }
+  const filteredSubjects = currentSubjectsData.filter((course) =>
+    course.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
+  const subjectsPerRow = 3; // Number of subjects to display per row
 
   return (
-    <div className="StudentDashboard">
-      <div className="CurrentSubjects text-lg md:text-md">
-        <div className="Heading mx-16 text-left">
-          Current Subjects
-        </div>
-        <div className="CurrentList md:flex flex-wrap">
-          {currentSubjectsData.map((course, index) => (
-            <div key={index} className="md:w-1/3 md:px-2">
-              <SubjectCard
-                cardTitle={course.title}
-                classDetails={course.details}
-                semester={course.semester}
-                color={colors[index % colors.length]}
-                onClick={handleSubjectCardClick}
-              />
-            </div>
-          ))}
-        </div>
+    <div className="CourseCatalogue">
+      <div className="SearchBar mb-4 m-4 md:ml-16 bg-gray-200  md:mr-48 flex">
+        <input
+          className='bg-gray-200 p-4 w-full'
+          type="text"
+          placeholder="Search subjects..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <button className="btn btn-primary p-4 text-center">Search</button>
       </div>
-      <div className="PastSubjects text-lg">
-        <div className="Heading mx-16 text-left">
-          Past Subjects
-        </div>
-        <div className="PastList md:flex flex-wrap">
-          {pastSubjectsData.map((course, index) => (
-            <div key={index} className="md:w-1/3 md:px-2">
+      <div className="CurrentSubjects text-lg md:text-md">
+        <div className="Heading mx-16 text-left">Current Subjects</div>
+        <div className="CurrentList md:flex flex-wrap">
+          {filteredSubjects.map((course, index) => (
+            <div key={index} className={`md:w-1/${subjectsPerRow}`}>
               <SubjectCard
                 cardTitle={course.title}
                 classDetails={course.details}
@@ -93,4 +81,4 @@ function StudentDashboard({ setStudentCourse }) {
   );
 }
 
-export default StudentDashboard;
+export default CourseCatalogue;

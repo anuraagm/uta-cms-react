@@ -5,6 +5,7 @@ import StudentDashboard from "../../templates/StudentTemplates/StudentDashboard"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 import StudentGrades from "../../templates/StudentTemplates/StudentGrades";
+import CourseCatalogue from "../../templates/StudentTemplates/CourseCatalogue";
 
 function Student() {
     const [current, setCurrent] = useState(
@@ -90,6 +91,8 @@ function Student() {
         view === "Profile" && <ProfileTemplate></ProfileTemplate>
         ||
         view === "Grades" && <StudentGrades></StudentGrades>
+        ||
+        view === "Course Catalogue" && <CourseCatalogue></CourseCatalogue>
        }
     </div>
   );
