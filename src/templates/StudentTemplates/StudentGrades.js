@@ -28,7 +28,7 @@ function StudentGrades() {
       <div className="ContentSection bg-gray-200 m-12 ml-0 p-12">
         <div className="SelectionTitle text-xl sm:text-md text-center mb-12">
           {current === "Cummulative" && (
-            <div className="flex justify-between space-x-3">
+            <div className="md:flex justify-between space-x-3">
               <div className="GradeValue text-left"> 
                 Cummulative GPA: {" "}<br />
                 <span className="font-bold">3.67 / 4.00</span> 
@@ -42,13 +42,13 @@ function StudentGrades() {
                 5. DAA - A <br />
                 6. Software Testing - B
               </div>
-              <div className="w-1/4">
+              <div className="md:w-1/4">
                 <img src={gpaGraph} alt='GPA Graph'/> 
               </div> 
             </div>
           )}
           {current === "Semester" && (
-            <div className="flex justify-between space-x-3">
+            <div className="md:flex justify-between space-x-3">
               <div className="GradeValue text-left"> 
                 Semester GPA: {" "}
                 <span className="font-bold">4.00 / 4.00</span> 
@@ -58,7 +58,7 @@ function StudentGrades() {
                 1. Database Implementations - Pending Grade <br />
                 2. Advanced Database - Pending Grade
               </div>
-              <div className="w-1/4">
+              <div className="md:w-1/4">
                 <img src={gpaGraph} alt='GPA Graph'/> 
               </div>
             </div>
