@@ -5,6 +5,7 @@ import QADashboard from "../../templates/QATemplates/QADashboard";
 import QAGrades from "../../templates/QATemplates/QAGrades";
 import ProfileTemplate from "../../templates/CommonTemplates/ProfileTemplate";
 import MessageTemplate from "../../templates/CommonTemplates/MessageTemplate";
+import QAManageUsers from "../../templates/QATemplates/QAManageUsers";
 
 function QualityAssurance() {
 
@@ -17,6 +18,9 @@ function QualityAssurance() {
       const navigate = useNavigate(); // Get the navigation function
     
       useEffect(() => {
+        if (localStorage.getItem("view") === "Course") {
+          setView("");
+        }
         if (localStorage.getItem("view") != null) {
             console.log("view : ", localStorage.getItem("view"));
         }
@@ -66,6 +70,7 @@ function QualityAssurance() {
                 {view === "Profile" && <ProfileTemplate></ProfileTemplate>}
                 {view === "Messages" && <MessageTemplate></MessageTemplate>}
                 {view === "Generate Performance Reports" && <QAGrades></QAGrades>}
+                {view === "Manage Users" && <QAManageUsers></QAManageUsers>}
                 </div>
             </div>
         </div>
