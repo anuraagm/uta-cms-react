@@ -51,6 +51,7 @@ function CourseCatalogue({ setStudentCourse }) {
 
   return (
     <div className="CourseCatalogue">
+      <div className="Heading mx-16 text-left text-xl">Search for Subjects</div>
       <div className="SearchBar mb-4 m-4 md:ml-16 bg-gray-200  md:mr-48 flex">
         <input
           className='bg-gray-200 p-4 w-full'
@@ -62,7 +63,6 @@ function CourseCatalogue({ setStudentCourse }) {
         <button className="btn btn-primary p-4 text-center">Search</button>
       </div>
       <div className="CurrentSubjects text-lg md:text-md">
-        <div className="Heading mx-16 text-left">Current Subjects</div>
         <div className="CurrentList md:flex flex-wrap">
           {filteredSubjects.map((course, index) => (
             <div key={index} className={`md:w-1/${subjectsPerRow}`}>
