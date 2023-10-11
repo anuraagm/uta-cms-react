@@ -1,7 +1,12 @@
 import React from 'react';
 import SubjectCard from "../../molecules/Cards/SubjectCard/SubjectCard";
+import { useNavigate } from 'react-router-dom';
 
-function StudentDashboard() {
+
+function StudentDashboard({setStudentCourse}) {
+
+  const navigate = useNavigate();
+  
   const currentSubjectsData = [
     {
       title: "Web Data Management",
@@ -39,6 +44,14 @@ function StudentDashboard() {
   ];
 
   const colors = ['bg-yellow', 'bg-pink', 'bg-green'];
+  
+  const handleSubjectCardClick = (courseTitle) => {
+    setStudentCourse(courseTitle);
+  };
+
+  function navigateToStudentCourse(courseName) {
+    navigate(`/student/course/${courseName}`);
+  }
 
   return (
     <div className="StudentDashboard">
@@ -53,7 +66,8 @@ function StudentDashboard() {
               cardTitle={course.title}
               classDetails={course.details}
               semester={course.semester}
-              color={colors[index % colors.length]} // Cycle through colors
+              color={colors[index % colors.length]} 
+              onClick={handleSubjectCardClick}
             />
           ))}
         </div>
@@ -69,7 +83,8 @@ function StudentDashboard() {
               cardTitle={course.title}
               classDetails={course.details}
               semester={course.semester}
-              color={colors[index % colors.length]} // Cycle through colors
+              color={colors[index % colors.length]} 
+              onClick={handleSubjectCardClick}
             />
           ))}
         </div>
