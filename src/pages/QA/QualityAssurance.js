@@ -6,6 +6,7 @@ import QAGrades from "../../templates/QATemplates/QAGrades";
 import ProfileTemplate from "../../templates/CommonTemplates/ProfileTemplate";
 import MessageTemplate from "../../templates/CommonTemplates/MessageTemplate";
 import QAManageUsers from "../../templates/QATemplates/QAManageUsers";
+import QAAuditCourses from "../../templates/QATemplates/QAAuditCourses";
 
 function QualityAssurance() {
 
@@ -71,6 +72,7 @@ function QualityAssurance() {
                 {view === "Messages" && <MessageTemplate></MessageTemplate>}
                 {view === "Generate Performance Reports" && <QAGrades></QAGrades>}
                 {view === "Manage Users" && <QAManageUsers></QAManageUsers>}
+                {view === "Audit Courses" && <QAAuditCourses></QAAuditCourses>}
                 </div>
             </div>
         </div>
