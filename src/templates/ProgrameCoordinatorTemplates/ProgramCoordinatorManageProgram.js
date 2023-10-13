@@ -1,6 +1,6 @@
-function QAManageProgram () {
+function ProgramCoordinatorManageProgram () {
     return (
-        <div className="QAManageProgram">
+        <div className="ProgramCoordinatorManageProgram">
             <div className="PageTitle text-xl mb-12">
                 View the Program Details below,
             </div>
@@ -53,4 +53,4 @@ function QAManageProgram () {
     );
 }
 
-export default QAManageProgram;
+export default ProgramCoordinatorManageProgram;
