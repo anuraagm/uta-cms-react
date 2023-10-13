@@ -62,9 +62,9 @@ function ProgramCoordinator() {
                     ||
                     view === "Manage Program" && <span>Manage Program{" >> "}</span>
                     ||
-                    view === "Audit Courses" && <span>Audit Courses{" >> "}</span>
+                    view === "Manage Course Content" && <span>Manage Course Content{" >> "}</span>
                     ||
-                    view === "Manage Users" && <span>Manage Users{" >> "}</span>
+                    view === "Conduct Course Review" && <span>Conduct Course Review{" >> "}</span>
                 }
                 </div>
                 <div className="Welcome text-xl ml-16 mb-8">
@@ -72,8 +72,8 @@ function ProgramCoordinator() {
                 {view === "Profile" && <ProfileTemplate></ProfileTemplate>}
                 {view === "Messages" && <MessageTemplate></MessageTemplate>}
                 {view === "Generate Performance Reports" && <ProgramCoordinatorGrades></ProgramCoordinatorGrades>}
-                {view === "Manage Users" && <ProgramCoordinatorManageUsers></ProgramCoordinatorManageUsers>}
-                {view === "Audit Courses" && <ProgramCoordinatorAuditCourses></ProgramCoordinatorAuditCourses>}
+                {view === "Conduct Course Review" && <ProgramCoordinatorManageUsers></ProgramCoordinatorManageUsers>}
+                {view === "Manage Course Content" && <ProgramCoordinatorAuditCourses></ProgramCoordinatorAuditCourses>}
                 {view === "Manage Program" && <ProgramCoordinatorManageProgram></ProgramCoordinatorManageProgram>}
                 </div>
             </div>
