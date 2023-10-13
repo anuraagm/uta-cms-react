@@ -23,7 +23,7 @@ const Header = ({ landingRef, aboutRef, footerRef, userRole, setStudentOption, s
         return <StudentLinks setOption={setStudentOption}/>;
         case "qa":
         return <QaLinks setOption={setQaOption}/>;
-        case "programcoordinator":
+        case "ProgramCoordinator":
         return <ProgramCoordinatorLinks setOption={setProgramCoordinatorOption}/>;
         case "Instructor":
         return <InstructorLinks setOption={setInstructorOption}/>;

@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import Student from './pages/Student/Student';
 import QualityAssurance from './pages/QA/QualityAssurance';
 import Instructor from './pages/Instructor/Instructor';
+import ProgramCoordinator from './pages/ProgramCoordinator/ProgramCoordinator';
 
 function AppRouter() {
   return (
@@ -15,7 +16,7 @@ function AppRouter() {
             <Route index element={<Home></Home>}></Route>
             <Route path="student" element={<Student></Student>}></Route>
             <Route path="qa" element={<QualityAssurance></QualityAssurance>}></Route>
-            <Route path="programcoordinator" element={<QualityAssurance></QualityAssurance>}></Route>
+            <Route path="programcoordinator" element={<ProgramCoordinator></ProgramCoordinator>}></Route>
             <Route path="instructor" element={<Instructor></Instructor>}></Route>
           </Route>
         </Routes>

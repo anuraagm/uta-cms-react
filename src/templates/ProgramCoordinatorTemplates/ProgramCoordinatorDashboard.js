@@ -1,7 +1,7 @@
 import BlueCard from "../../molecules/Cards/GenericCard/BlueCard";
 
 function ProgramCoordinatorDashboard({ setOption }) {
-    const ProgramCoordinatorOptions = [ "Manage Program", "Audit Courses", "Manage Users", "Generate Performance Reports"]
+    const ProgramCoordinatorOptions = [ "Manage Program", "Manage Course Content", "Generate Performance Reports"]
     const optionsPerRow = 4;
     return (
         <div className="ProgramCoordinatorDashboard">
