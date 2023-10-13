@@ -1,7 +1,7 @@
 import { useState } from "react";
-import QACourseCard from "../../organisms/QACourseCard/QACourseCard";
+import ProgramCoordinatorCourseCard from "../../organisms/ProgramCoordinatorCourseCard/ProgramCoordinatorCourseCard";
 
-function QACoursePage({course}) {
+function ProgramCoordinatorCoursePage({course}) {
     const [current, setCurrent] = useState("Admin");
 
     const chooseOption = (option) => {
@@ -17,7 +17,7 @@ function QACoursePage({course}) {
 
 
     return (
-        <div className="QACoursePage bg-gray-200">
+        <div className="ProgramCoordinatorCoursePage bg-gray-200">
         <div className="PageTitle text-xl">
             {course}
         </div>
@@ -25,7 +25,7 @@ function QACoursePage({course}) {
             <div className="UserCardContainer justify-center">
             {courses.map((course) => (
                 <div key={course.id} className="p-4">
-                <QACourseCard title={course.title} sub={course.info}></QACourseCard>
+                <ProgramCoordinatorCourseCard title={course.title} sub={course.info}></ProgramCoordinatorCourseCard>
                 </div>
             ))}
             </div>
@@ -34,4 +34,4 @@ function QACoursePage({course}) {
     );
 }
 
-export default QACoursePage;
+export default ProgramCoordinatorCoursePage;

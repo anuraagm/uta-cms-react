@@ -1,7 +1,7 @@
 import { useState } from "react";
 import gpaGraph from './gpa-graph.png';
 
-function QAGrades() {
+function ProgramCoordinatorGrades() {
   const [current, setCurrent] = useState("Semester");
 
   const chooseOption = (option) => {
@@ -9,7 +9,7 @@ function QAGrades() {
   };
 
   return (
-    <div className="QAGrades">
+    <div className="ProgramCoordinatorGrades">
       <div className="PageTitle text-xl">Student Grades</div>
       <div className="SectionNavigation mt-12">
         <button
@@ -94,4 +94,4 @@ function QAGrades() {
   );
 }
 
-export default QAGrades;
+export default ProgramCoordinatorGrades;

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import SubjectCard from "../../molecules/Cards/SubjectCard/SubjectCard";
-import QACoursePage from "./QACoursePage";
+import ProgramCoordinatorCoursePage from "./ProgramCoordinatorCoursePage";
 
-function QAAuditCourses() {
+function ProgramCoordinatorAuditCourses() {
   const [current, setCurrent] = useState("Admin");
   const [selectedCourse, setSelectedCourse] = useState(null);
 
@@ -73,7 +73,7 @@ function QAAuditCourses() {
   }, [selectedCourse]);
 
   return (
-    <div className="QAAuditCourses">
+    <div className="ProgramCoordinatorAuditCourses">
       <div className="PageTitle text-xl ml-16">
         Choose Course to audit
       </div>
@@ -99,7 +99,7 @@ function QAAuditCourses() {
             >
               X
             </button>
-            <QACoursePage course={selectedCourse.title} />
+            <ProgramCoordinatorCoursePage course={selectedCourse.title} />
           </div>
         </div>
       )}
@@ -107,4 +107,4 @@ function QAAuditCourses() {
   );
 }
 
-export default QAAuditCourses;
+export default ProgramCoordinatorAuditCourses;
