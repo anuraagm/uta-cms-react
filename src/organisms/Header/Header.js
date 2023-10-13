@@ -5,12 +5,11 @@ import "./Header.css";
 import HomeLinks from "../../atoms/navlinks/HomeLinks";
 import StudentLinks from "../../atoms/navlinks/StudentLinks";
 import QaLinks from "../../atoms/navlinks/QaLinks";
-// import InstructorLinks from "../../atoms/navlinks/InstructorLinks"; // Import InstructorLinks
+import InstructorLinks from "../../atoms/navlinks/InstructorLinks";
+import ProgramCoordinatorLinks from "../../atoms/navlinks/ProgramCoordinatorLinks";
 // import AdminLinks from "../../atoms/navlinks/AdminLinks"; // Import AdminLinks
-// import QALinks from "../../atoms/navlinks/QALinks"; // Import QALinks
-// import CoordinatorLinks from "../../atoms/navlinks/CoordinatorLinks"; // Import CoordinatorLinks
 
-const Header = ({ landingRef, aboutRef, footerRef, userRole, setStudentOption, setQaOption }) => { // Pass userRole as a prop
+const Header = ({ landingRef, aboutRef, footerRef, userRole, setStudentOption, setQaOption, setProgramCoordinatorOption, setInstructorOption }) => { // Pass userRole as a prop
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const toggleMobileMenu = () => {
@@ -24,6 +23,10 @@ const Header = ({ landingRef, aboutRef, footerRef, userRole, setStudentOption, s
         return <StudentLinks setOption={setStudentOption}/>;
         case "qa":
         return <QaLinks setOption={setQaOption}/>;
+        case "programcoordinator":
+        return <ProgramCoordinatorLinks setOption={setProgramCoordinatorOption}/>;
+        case "Instructor":
+        return <InstructorLinks setOption={setInstructorOption}/>;
       default:
         return <HomeLinks landingRef={landingRef} aboutRef={aboutRef} footerRef={footerRef} />;
     }
