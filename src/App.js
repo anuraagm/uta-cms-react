@@ -6,6 +6,7 @@ import Student from './pages/Student/Student';
 import QualityAssurance from './pages/QA/QualityAssurance';
 import Instructor from './pages/Instructor/Instructor';
 import ProgramCoordinator from './pages/ProgramCoordinator/ProgramCoordinator';
+import ChatBot from './templates/CommonTemplates/ChatBot';
 
 function AppRouter() {
   return (
@@ -21,6 +22,7 @@ function AppRouter() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ChatBot></ChatBot>
     </div>
   );
 }
