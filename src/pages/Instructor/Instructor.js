@@ -14,7 +14,7 @@ function Instructor() {
         localStorage.getItem("course") || ""
       ); // Initialize with localStorage value or ""
       const [view, setView] = useState(
-        localStorage.getItem("view") || "Course"
+        localStorage.getItem("view") || ""
       ); // Initialize with localStorage value or "Course"
       const navigate = useNavigate(); // Get the navigation function
     

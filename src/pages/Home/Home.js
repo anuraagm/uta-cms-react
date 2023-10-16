@@ -3,7 +3,7 @@ import stock from './students-stock.png';
 import image1 from './cs-stud.jpeg';
 import image2 from './cs-expert.jpeg';
 import image3 from './scores.jpeg';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Footer from '../../organisms/Footer/Footer';
 import Header from '../../organisms/Header/Header';
 import LoginBox from '../../templates/LoginTemplates/LoginBox';
@@ -20,6 +20,11 @@ function Home() {
   const [isLoginPopupVisible, setLoginPopupVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    localStorage.clear();
+    localStorage.setItem("view","");
+  },[]);
 
   const toggleLoginPopup = () => {
     setLoginPopupVisible(!isLoginPopupVisible);
@@ -75,7 +80,7 @@ function Home() {
           <ButtonPrimary buttonText={"Student"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/student")}></ButtonPrimary>
           <ButtonPrimary buttonText={"Instructor"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/instructor")}></ButtonPrimary>
           <ButtonPrimary buttonText={"Admin"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/admin")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Coordinator"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/coordinator")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Coordinator"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/programcoordinator")}></ButtonPrimary>
           <ButtonPrimary buttonText={"QA"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/qa")}></ButtonPrimary>
           {isLoginPopupVisible && (
           <div className="login-popup">

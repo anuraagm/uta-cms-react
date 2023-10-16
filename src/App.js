@@ -18,7 +18,7 @@ function AppRouter() {
             <Route index element={<Home></Home>}></Route>
             <Route path="student" element={<Student></Student>}></Route>
             <Route path="qa" element={<QualityAssurance></QualityAssurance>}></Route>
-            <Route path="coordinator" element={<ProgramCoordinator></ProgramCoordinator>}></Route>
+            <Route path="programcoordinator" element={<ProgramCoordinator></ProgramCoordinator>}></Route>
             <Route path="instructor" element={<Instructor></Instructor>}></Route>
             <Route path="admin" element={<Admin></Admin>}></Route>
           </Route>
