@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import SubjectCard from "../../molecules/Cards/SubjectCard/SubjectCard";
 import AdminCoursePage from "./AdminCoursePage";
+import ButtonPrimary from "../../atoms/buttons/ButtonPrimary/ButtonPrimary";
 
 function AdminAuditCourses() {
   const [current, setCurrent] = useState("Admin");

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ButtonPrimary from "../../atoms/buttons/ButtonPrimary/ButtonPrimary";
+import ButtonSecondary from "../../atoms/buttons/ButtonSecondary/ButtonSecondary"
 
 function MemberCard({ user }) {
   const [showDetails, setShowDetails] = useState(false);
@@ -33,6 +35,9 @@ function MemberCard({ user }) {
             <div className="w-full h-full flex flex-col justify-center items-center">
               <div className="text-2xl font-bold mb-4">{user.name}</div>
               <div className="text-lg">{user.info}</div>
+              <ButtonPrimary buttonText={"VIEW USER"}></ButtonPrimary>
+              <ButtonPrimary buttonText={"EDIT PERMISSIONS"}></ButtonPrimary>
+              <ButtonPrimary buttonText={"DELETE USER"}></ButtonPrimary>
             </div>
           </div>
         </div>

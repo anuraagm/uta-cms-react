@@ -13,6 +13,8 @@ function AdminCourseCard({ title, sub }) {
             </div>
             <div className="Actions justify-end flex space-x-3">
                 <ButtonPrimary buttonText={"View"}></ButtonPrimary>
+                <ButtonPrimary buttonText={"Edit"}></ButtonPrimary>
+                <ButtonPrimary buttonText={"Delete"}></ButtonPrimary>
             </div>
         </div>
     );

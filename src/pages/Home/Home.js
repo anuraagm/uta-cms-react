@@ -3,15 +3,33 @@ import stock from './students-stock.png';
 import image1 from './cs-stud.jpeg';
 import image2 from './cs-expert.jpeg';
 import image3 from './scores.jpeg';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Footer from '../../organisms/Footer/Footer';
 import Header from '../../organisms/Header/Header';
+import LoginBox from '../../templates/LoginTemplates/LoginBox';
+import './Home.css';
 
 function Home() {
 
   const landingRef = useRef();
   const aboutRef = useRef();
   const footerRef = useRef();
+
+  const [isLoginPopupVisible, setLoginPopupVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const toggleLoginPopup = () => {
+    setLoginPopupVisible(!isLoginPopupVisible);
+  };
+  
+  const handleLogin = () => {
+    // Implement your login logic here
+    console.log('Logging in with:', email, password);
+    toggleLoginPopup(); // Close the popup after login
+  };
+  
+  
 
   const images = [image1, image2, image3];
   
@@ -49,7 +67,12 @@ function Home() {
             up to date with all things Master’s Related 
             in the Computer Science Department.
           </h1>
-          <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"} clickFunction={toggleLoginPopup}></ButtonPrimary>
+          {isLoginPopupVisible && (
+  <div className="login-popup">
+    <LoginBox toggleLoginPopup={toggleLoginPopup}/>
+  </div>
+)}
         </div>
       </div>
       <div className="bg-white p-8 md:p-16" id='about' ref={aboutRef}>
