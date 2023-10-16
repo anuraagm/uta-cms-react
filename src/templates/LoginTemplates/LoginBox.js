@@ -29,7 +29,7 @@ function LoginBox({toggleLoginPopup}) {
   return isLoginBoxVisible ? (
     <div className="login-box">
       <button className="close-button" onClick={handleCloseButton}>X</button>
-      <h1>UTA Login</h1>
+      <h1 className='bg-blue text-white p-4 text-lg'>UTA Login</h1>
       <br />
       <h2>Please login/signup to continue</h2>
       <br />

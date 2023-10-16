@@ -8,12 +8,14 @@ import Footer from '../../organisms/Footer/Footer';
 import Header from '../../organisms/Header/Header';
 import LoginBox from '../../templates/LoginTemplates/LoginBox';
 import './Home.css';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
   const landingRef = useRef();
   const aboutRef = useRef();
   const footerRef = useRef();
+  const navigate = useNavigate();
 
   const [isLoginPopupVisible, setLoginPopupVisible] = useState(false);
   const [email, setEmail] = useState('');
@@ -28,8 +30,10 @@ function Home() {
     console.log('Logging in with:', email, password);
     toggleLoginPopup(); // Close the popup after login
   };
-  
-  
+
+  const navigateToPage = (loc) => {
+    navigate(loc);
+  }  
 
   const images = [image1, image2, image3];
   
@@ -58,7 +62,7 @@ function Home() {
 
       <div className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url(${stock})` }} id='landing' ref={landingRef}>
         <div className="absolute bottom-0 right-0 bg-blue bg-opacity-80 p-4 md:w-1/3 md:p-16">
-          <h1 className='text-white text-lg md:text-2xl lg:text-2xl xl:text-2xl font-bold pb-4 md:pb-4 md:text-left'>
+        <h1 className='text-white text-lg md:text-2xl lg:text-2xl xl:text-2xl font-bold pb-4 md:pb-4 md:text-left'>
             Welcome to UTA CMS!
           </h1>
           <h1 className="text-white md:text-xl lg:text-xl xl:text-xl md:text-left pb-6 md:pb-4">
@@ -68,10 +72,15 @@ function Home() {
             in the Computer Science Department.
           </h1>
           <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"} clickFunction={toggleLoginPopup}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Student"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/student")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Instructor"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/instructor")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Admin"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/admin")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Coordinator"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/coordinator")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"QA"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/admin")}></ButtonPrimary>
           {isLoginPopupVisible && (
-  <div className="login-popup">
-    <LoginBox toggleLoginPopup={toggleLoginPopup}/>
-  </div>
+          <div className="login-popup">
+            <LoginBox toggleLoginPopup={toggleLoginPopup}/>
+          </div>
 )}
         </div>
       </div>
