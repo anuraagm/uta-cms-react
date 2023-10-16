@@ -20,9 +20,6 @@ function QualityAssurance() {
       const navigate = useNavigate(); // Get the navigation function
     
       useEffect(() => {
-        if (localStorage.getItem("view") === "Course") {
-          setView("");
-        }
         if (localStorage.getItem("view") != null) {
             console.log("view : ", localStorage.getItem("view"));
         }
@@ -44,6 +41,7 @@ function QualityAssurance() {
         localStorage.removeItem("view");
         localStorage.removeItem("current");
         setCurrent("");
+        setView("");
       };
 
     return (
