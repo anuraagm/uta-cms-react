@@ -76,7 +76,7 @@ function Home() {
           <ButtonPrimary buttonText={"Instructor"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/instructor")}></ButtonPrimary>
           <ButtonPrimary buttonText={"Admin"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/admin")}></ButtonPrimary>
           <ButtonPrimary buttonText={"Coordinator"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/coordinator")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"QA"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/admin")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"QA"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/qa")}></ButtonPrimary>
           {isLoginPopupVisible && (
           <div className="login-popup">
             <LoginBox toggleLoginPopup={toggleLoginPopup}/>
