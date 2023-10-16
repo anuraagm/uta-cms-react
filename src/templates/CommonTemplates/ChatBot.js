@@ -11,6 +11,12 @@ function ChatBot() {
   const API_KEY = process.env.REACT_APP_CHAT_API_KEY;
 
   useEffect(() => {
+    if (messages.length == 0) {
+      setMessages([...messages, {content:'Welcome to UTA Chatbot! How may I assist you today?', role:'bot'}]);
+    }
+  },[])
+
+  useEffect(() => {
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
     }
@@ -100,7 +106,7 @@ function ChatBot() {
                                                 lg:w-120 lg:h-120 lg:max-h-120 lg:max-w-120`}>
               {messages.map((message, index) => (
                 <div key={index} className={`message ${message.role}`} style={message.role === 'user' ? { fontWeight: 'bold' } : null}>
-                  {message.content}
+                  <br/>{message.content}
                 </div>
               ))}
               {isLoading && <div className="loader">Loading...</div>}

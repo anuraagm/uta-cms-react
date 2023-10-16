@@ -14,13 +14,13 @@ const HomeLinks = ({landingRef, aboutRef, footerRef}) => {
         <NavLink text="Service" url="#" />
         <NavLink text="About" url="#about" />
         <NavLink text="Contact Us" url="#footer" />
-        <NavLink text="Blog" url="#" />
+        <NavLink text="Blog" url="/blog" />
       </div>
       <div className="md:hidden text-center">
         <NavLink text="Services" url="#" />
         <NavLink text="About" url="#about" />
         <NavLink text="Contact Us" url="#footer" />
-        <NavLink text="Blog" url="#" />
+        <NavLink text="Blog" url="/blog" />
       </div>
     </>
   );
