@@ -27,16 +27,12 @@ const InstructorLinks = ({ setOption }) => {
     <>
       <div className="hidden md:flex space-x-4">
         <NavLink text="Profile" url="#" onClick={handleNavLinkClick} />
-        <NavLink text="Grades" url="#" onClick={handleNavLinkClick} />
         <NavLink text="Messages" url="#" onClick={handleNavLinkClick} />
-        <NavLink text="Course Catalogue" url="#" onClick={handleNavLinkClick} />
         <ButtonPrimary buttonText={"Logout"} clickFunction={handleLogoutClick}></ButtonPrimary>
       </div>
       <div className="md:hidden text-center">
         <NavLink text="Profile" url="#" onClick={handleNavLinkClick} />
-        <NavLink text="Grades" url="#" onClick={handleNavLinkClick} />
         <NavLink text="Messages" url="#" onClick={handleNavLinkClick} />
-        <NavLink text="Course Catalogue" url="#" onClick={handleNavLinkClick} />
         <ButtonPrimary buttonText={"Logout"} clickFunction={handleLogoutClick}></ButtonPrimary>
       </div>
     </>

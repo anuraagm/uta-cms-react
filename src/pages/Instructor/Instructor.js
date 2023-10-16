@@ -4,8 +4,6 @@ import InstructorCourse from "../../templates/InstructorTemplates/InstructorCour
 import InstructorDashboard from "../../templates/InstructorTemplates/InstructorDashboard";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
-import InstructorGrades from "../../templates/InstructorTemplates/InstructorGrades";
-import CourseCatalogue from "../../templates/InstructorTemplates/CourseCatalogue";
 import MessageTemplate from "../../templates/CommonTemplates/MessageTemplate";
 
 function Instructor() {
@@ -73,11 +71,7 @@ function Instructor() {
             ||
             view === "Profile" && <span>Profile{" >> "}</span>
             ||
-            view === "Grades" && <span>Grades{" >> "}</span>
-            ||
             view === "Messages" && <span>Messages{" >> "}</span>
-            ||
-            view === "Course Catalogue" && <span>Course Catalogue{" >> "}</span>
           }
         </div>
         <div className="Welcome text-xl ml-16 mb-8">
@@ -90,10 +84,6 @@ function Instructor() {
         view === "Course" && <InstructorCourse courseName={course}></InstructorCourse>
         ||
         view === "Profile" && <ProfileTemplate></ProfileTemplate>
-        ||
-        view === "Grades" && <InstructorGrades></InstructorGrades>
-        ||
-        view === "Course Catalogue" && <CourseCatalogue></CourseCatalogue>
         ||
         view === "Messages" && <MessageTemplate></MessageTemplate>
        }
