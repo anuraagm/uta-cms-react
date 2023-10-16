@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import fileimg from './file.png';
+import ButtonPrimary from '../../atoms/buttons/ButtonPrimary/ButtonPrimary';
+import ButtonSecondary from '../../atoms/buttons/ButtonSecondary/ButtonSecondary';
 
 
 function InstructorCourse({ courseName }) {
@@ -63,6 +65,36 @@ function InstructorCourse({ courseName }) {
                 current == "Modules" && <span>Modules</span>
             }
         </div>
+        {
+          current === "Overview" && 
+          <div className="m-8 text-right">
+            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+          </div>
+          ||
+          current === "Syllabus"  &&
+          <div className="m-8 text-right">
+            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+          </div>
+        }
+        {
+          current === "Assignments" &&
+          <div className="m-8 text-right">
+            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Add+"} />
+            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+          </div>
+          || 
+          current === "Tests"  &&
+          <div className="m-8 text-right">
+            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Add+"} />
+            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+          </div>
+          || 
+          current === "Modules"  &&
+          <div className="m-8 text-right">
+            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Add+"} />
+            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+          </div>
+        }
         <div className='SelectionBody text-lg sm:text-md text-center' style={{ maxHeight: '400px', overflowY: 'auto' }}>
             {
                 current == "Overview" && <span>
@@ -165,27 +197,43 @@ function InstructorCourse({ courseName }) {
                   />
                     <div className="file-upload-container flex justify-between">
                     <p className="flex-grow text-left p-2 w-1/4">
-                      Upload your assignment:<br /><br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                      Assignment Submission:<br /><br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
                       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                      nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
-                      in culpa qui officia deserunt mollit anim id est laborum.
+                      nisi ut aliquip ex ea commodo consequat. 
                       <br /><br />
-                      Current Submission :<br/>
-                      <a href="" className='font-bold'>Submission 4</a><br /><br />
-                      Past Submissions : <br />
-                      <a href="" className='font-bold'>Submission 1</a><br />
-                      <a href="" className='font-bold'>Submission 2</a><br />
-                      <a href="" className='font-bold'>Submission 3</a><br />
-                    </p>
-                    <div className="relative">
-                      <button className="file-upload-button">
-                        <img src={fileimg} alt="Upload File" />
-                      </button>
-                      <div className="absolute top-0 left-0 w-full h-full flex text-xl items-start justify-center bg-transparent text-black font-bold opacity-70 transition-opacity cursor-pointer" onClick={() => document.getElementById("fileInput").click()}>
-                        Click to Upload File
+                      <div className='StudentSubmissions flex space-x-20'>
+                        <div className='Column'>
+                          Student Submission :<br/>
+                          <a href="" className='font-bold'>Submission Student 1</a><br />
+                          <a href="" className='font-bold'>Submission Student 2</a><br />
+                          <a href="" className='font-bold'>Submission Student 3</a><br />
+                          <a href="" className='font-bold'>Submission Student 4</a><br />
+                          <a href="" className='font-bold'>Submission Student 5</a><br />
+                          <a href="" className='font-bold'>Submission Student 6</a><br />
+                          <a href="" className='font-bold'>Submission Student 7</a><br />
+                          <a href="" className='font-bold'>Submission Student 8</a><br />
+                          <a href="" className='font-bold'>Submission Student 9</a><br />
+                          <a href="" className='font-bold'>Submission Student 10</a><br />
+                          <a href="" className='font-bold'>Submission Student 11</a><br />
+                          <a href="" className='font-bold'>Submission Student 12</a><br />
+                        </div>
+                        <div className='Column'>
+                          Student Submission :<br/>
+                          <a href="" className='font-bold'>Submission Student 13</a><br />
+                          <a href="" className='font-bold'>Submission Student 14</a><br />
+                          <a href="" className='font-bold'>Submission Student 15</a><br />
+                          <a href="" className='font-bold'>Submission Student 16</a><br />
+                          <a href="" className='font-bold'>Submission Student 17</a><br />
+                          <a href="" className='font-bold'>Submission Student 18</a><br />
+                          <a href="" className='font-bold'>Submission Student 19</a><br />
+                          <a href="" className='font-bold'>Submission Student 20</a><br />
+                          <a href="" className='font-bold'>Submission Student 21</a><br />
+                          <a href="" className='font-bold'>Submission Student 22</a><br />
+                          <a href="" className='font-bold'>Submission Student 23</a><br />
+                          <a href="" className='font-bold'>Submission Student 24</a><br />
+                        </div>
                       </div>
-                    </div>
+                    </p>
                   </div>
                 </span>
                 ||
@@ -199,21 +247,43 @@ function InstructorCourse({ courseName }) {
                   />
                     <div className="file-upload-container flex justify-between">
                     <p className="flex-grow text-left p-2 w-1/4">
-                      Upload your test submission:<br /><br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                      Test submissions:<br /><br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
                       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
                       nisi ut aliquip ex ea commodo consequat.
                       <br /><br />
-                      View Submission :<br/>
-                      <a href="" className='font-bold'>Submission</a><br /><br />
-                    </p>
-                    <div className="relative">
-                      <button className="file-upload-button">
-                        <img src={fileimg} alt="Upload File" />
-                      </button>
-                      <div className="absolute top-0 left-0 w-full h-full flex text-xl items-start justify-center bg-transparent text-black font-bold opacity-70 transition-opacity cursor-pointer" onClick={() => document.getElementById("fileInput").click()}>
-                        Click to Upload File
+                      <div className='StudentSubmissions flex space-x-20'>
+                        <div className='Column'>
+                          Student Submission :<br/>
+                          <a href="" className='font-bold'>Submission Student 1</a><br />
+                          <a href="" className='font-bold'>Submission Student 2</a><br />
+                          <a href="" className='font-bold'>Submission Student 3</a><br />
+                          <a href="" className='font-bold'>Submission Student 4</a><br />
+                          <a href="" className='font-bold'>Submission Student 5</a><br />
+                          <a href="" className='font-bold'>Submission Student 6</a><br />
+                          <a href="" className='font-bold'>Submission Student 7</a><br />
+                          <a href="" className='font-bold'>Submission Student 8</a><br />
+                          <a href="" className='font-bold'>Submission Student 9</a><br />
+                          <a href="" className='font-bold'>Submission Student 10</a><br />
+                          <a href="" className='font-bold'>Submission Student 11</a><br />
+                          <a href="" className='font-bold'>Submission Student 12</a><br />
+                        </div>
+                        <div className='Column'>
+                          Student Submission :<br/>
+                          <a href="" className='font-bold'>Submission Student 13</a><br />
+                          <a href="" className='font-bold'>Submission Student 14</a><br />
+                          <a href="" className='font-bold'>Submission Student 15</a><br />
+                          <a href="" className='font-bold'>Submission Student 16</a><br />
+                          <a href="" className='font-bold'>Submission Student 17</a><br />
+                          <a href="" className='font-bold'>Submission Student 18</a><br />
+                          <a href="" className='font-bold'>Submission Student 19</a><br />
+                          <a href="" className='font-bold'>Submission Student 20</a><br />
+                          <a href="" className='font-bold'>Submission Student 21</a><br />
+                          <a href="" className='font-bold'>Submission Student 22</a><br />
+                          <a href="" className='font-bold'>Submission Student 23</a><br />
+                          <a href="" className='font-bold'>Submission Student 24</a><br />
+                        </div>
                       </div>
-                    </div>
+                    </p>
                   </div>
                 </span>
                 ||
