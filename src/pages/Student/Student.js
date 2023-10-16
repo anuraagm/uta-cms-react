@@ -58,7 +58,8 @@ function Student() {
         localStorage.removeItem("current");
         setCourse("");
         setCurrent("");
-        setView("Course");
+        setView("");
+        navigate("student");
       };
 
   return (

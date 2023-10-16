@@ -44,6 +44,7 @@ function Admin() {
         localStorage.removeItem("view");
         localStorage.removeItem("current");
         setCurrent("");
+        navigate("admin");
       };
 
     return (

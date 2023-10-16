@@ -56,7 +56,8 @@ function Instructor() {
         localStorage.removeItem("current");
         setCourse("");
         setCurrent("");
-        setView("Course");
+        setView("");
+        navigate("instructor");
       };
 
   return (

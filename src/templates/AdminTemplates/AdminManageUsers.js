@@ -84,7 +84,7 @@ function AdminManageUsers() {
         <div className="UserCardContainer flex flex-wrap justify-center">
           {usersToDisplay.map((user) => (
             <div key={user.id} className="w-1/3 p-4">
-              <MemberCard user={user} />
+              <MemberCard user={user} type={"Admin"}/>
             </div>
           ))}
         </div>
