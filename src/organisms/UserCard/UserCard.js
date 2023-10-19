@@ -15,6 +15,7 @@ function UserCard() {
                         id="firstName"
                         className="mt-1 mr-16 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         placeholder="First Name"
+                        required
                     />
                 </div>
                 <div className="LastName md:flex-1 md:flex items-center">
@@ -26,6 +27,7 @@ function UserCard() {
                         id="lastName"
                         className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         placeholder="Last Name"
+                        required
                     />
                 </div>
             </div>
@@ -39,6 +41,7 @@ function UserCard() {
                         id="email"
                         className="mt-1 mr-16 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         placeholder="Enter Email"
+                        required
                     />
                 </div>
                 <div className="PhoneNumber md:flex-1 md:flex items-center">
@@ -50,6 +53,7 @@ function UserCard() {
                         id="phoneNumber"
                         className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         placeholder="Enter Phone Number"
+                        required
                     />
                 </div>
             </div>

@@ -44,6 +44,7 @@ function ProgramCoordinator() {
         localStorage.removeItem("view");
         localStorage.removeItem("current");
         setCurrent("");
+        navigate("programcoordinator");
       };
 
     return (

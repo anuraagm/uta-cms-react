@@ -19,6 +19,7 @@ const Footer = () => {
                   name="name"
                   placeholder="Your Name"
                   className="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 bg-blue-100 bg-opacity-50 px-4 py-2 text-black"
+                  required
                 />
               </div>
               <div className="md:w-1/2 md:pl-2">
@@ -28,11 +29,12 @@ const Footer = () => {
                   name="email"
                   placeholder="Your Email"
                   className="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 bg-blue-100 bg-opacity-50 px-4 py-2 text-black"
+                  required
                 />
               </div>
             </div>
             <div className="mb-4">
-              <textarea id="message" name="message" placeholder="Your Message" rows="4" className="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 bg-blue-100 bg-opacity-50 px-4 py-2 text-black"></textarea>
+              <textarea id="message" name="message" placeholder="Your Message" rows="4" className="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 bg-blue-100 bg-opacity-50 px-4 py-2 text-black" required></textarea>
             </div>
             <ButtonPrimary buttonText={"Submit"}></ButtonPrimary>
           </form>

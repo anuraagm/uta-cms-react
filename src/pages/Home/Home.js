@@ -77,11 +77,11 @@ function Home() {
             in the Computer Science Department.
           </h1>
           <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"} clickFunction={toggleLoginPopup}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Student"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/student")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Instructor"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/instructor")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Admin"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/admin")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Coordinator"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/programcoordinator")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"QA"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/qa")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Student"} alignment={"md:float-left"} clickFunction={() => navigateToPage("student")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Instructor"} alignment={"md:float-left"} clickFunction={() => navigateToPage("instructor")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Admin"} alignment={"md:float-left"} clickFunction={() => navigateToPage("admin")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"Coordinator"} alignment={"md:float-left"} clickFunction={() => navigateToPage("programcoordinator")}></ButtonPrimary>
+          <ButtonPrimary buttonText={"QA"} alignment={"md:float-left"} clickFunction={() => navigateToPage("qa")}></ButtonPrimary>
           {isLoginPopupVisible && (
           <div className="login-popup">
             <LoginBox toggleLoginPopup={toggleLoginPopup}/>

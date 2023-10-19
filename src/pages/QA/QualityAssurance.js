@@ -42,6 +42,7 @@ function QualityAssurance() {
         localStorage.removeItem("current");
         setCurrent("");
         setView("");
+        navigate("qa");
       };
 
     return (
