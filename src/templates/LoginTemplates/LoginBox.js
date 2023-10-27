@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoginBox.css';
 
-function LoginBox({toggleLoginPopup}) {
+function LoginBox({toggleLoginPopup, toggleSignupPopup}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoginBoxVisible, setIsLoginBoxVisible] = useState(true);
@@ -18,6 +18,8 @@ function LoginBox({toggleLoginPopup}) {
 
   const handleSignUp = () => {
     // Add your sign-up logic here
+    toggleSignupPopup();
+    toggleLoginPopup();
     console.log('Signing up with:', email, password);
   };
 

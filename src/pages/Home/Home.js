@@ -9,6 +9,7 @@ import Header from '../../organisms/Header/Header';
 import LoginBox from '../../templates/LoginTemplates/LoginBox';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
+import SignupBox from '../../templates/LoginTemplates/SignupBox';
 
 function Home() {
 
@@ -18,6 +19,7 @@ function Home() {
   const navigate = useNavigate();
 
   const [isLoginPopupVisible, setLoginPopupVisible] = useState(false);
+  const [isSignupPopupVisible, setSignupPopupVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -28,6 +30,10 @@ function Home() {
 
   const toggleLoginPopup = () => {
     setLoginPopupVisible(!isLoginPopupVisible);
+  };
+
+  const toggleSignupPopup = () => {
+    setSignupPopupVisible(!isSignupPopupVisible);
   };
   
   const handleLogin = () => {
@@ -83,10 +89,17 @@ function Home() {
           <ButtonPrimary buttonText={"Coordinator"} alignment={"md:float-left"} clickFunction={() => navigateToPage("programcoordinator")}></ButtonPrimary>
           <ButtonPrimary buttonText={"QA"} alignment={"md:float-left"} clickFunction={() => navigateToPage("qa")}></ButtonPrimary>
           {isLoginPopupVisible && (
-          <div className="login-popup">
-            <LoginBox toggleLoginPopup={toggleLoginPopup}/>
-          </div>
-)}
+            <div className="login-popup">
+              <LoginBox toggleLoginPopup={toggleLoginPopup} toggleSignupPopup={toggleSignupPopup}/>
+            </div>
+          )}
+          {
+            isSignupPopupVisible && (
+              <div className="login-popup">
+                <SignupBox toggleSignupPopup={toggleSignupPopup} toggleLoginPopup={toggleLoginPopup}></SignupBox>
+              </div>
+            )
+          }
         </div>
       </div>
       <div className="bg-white p-8 md:p-16" id='about' ref={aboutRef}>

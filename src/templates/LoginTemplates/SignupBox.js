@@ -1,38 +1,82 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./LoginBox.css";
 
-function LoginBox() {
+function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoginBoxVisible, setIsLoginBoxVisible] = useState(true);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmMessage, setConfirmMessage] = useState(false);
+  const [isSignupBoxVisible, setIsSignupBoxVisible] = useState(true);
+
+  useEffect(() => {
+    if (password === confirmPassword && password !== "") {
+      setConfirmMessage(true);
+    }
+    else {
+      setConfirmMessage(false);
+    }
+  },[confirmPassword])
+
   const handleCloseButton = () => {
-    // Toggle the visibility of the login box
-    setIsLoginBoxVisible(!isLoginBoxVisible);
+    // Toggle the visibility of the Signup box
+    toggleSignupPopup();
   };
 
-  const handleLogin = () => {
-    // Add your login logic here
-    console.log("Logging in with:", email, password);
+  const handleCancelButton = () => {
+    // Toggle the visibility of the Signup box
+    toggleLoginPopup();
+    toggleSignupPopup();
   };
 
-  const handleSignUp = () => {
-    // Add your sign-up logic here
-    console.log("Signing up with:", email, password);
+  const handleSignup = () => {
+    // Add your Signup logic here
+    if (confirmMessage) {
+      console.log("Logging in with:", email, password);
+    } 
   };
+
 
   const handleForgotPassword = () => {
     // Add your forgot password logic here
     console.log("Forgot password for:", email);
   };
 
-  return isLoginBoxVisible ? (
-    <div className="login-box">
-      <button className="close-button" onClick={handleCloseButton}>
-        X
-      </button>
-      <h1>UTA Signup</h1>
+  return isSignupBoxVisible ? (
+    <div className="Signup-box">
+      <button className="close-button" onClick={handleCloseButton}>X</button>
+      <h1 className='bg-blue text-white p-4 text-lg'>UTA Signup</h1>
       <br />
       <h2>Please signup to continue</h2>
+      <br />
+      <input
+        type="text"
+        placeholder="First Name"
+        value={firstname}
+        onChange={(e) => setFirstName(e.target.value)}
+        id="email_"
+      />
+      <br />
+      <br />
+      <input
+        type="text"
+        placeholder="Last Name"
+        value={lastname}
+        onChange={(e) => setLastName(e.target.value)}
+        id="email_"
+      />
+      <br />
+      <br />
+      <input
+        type="text"
+        placeholder="phone"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        id="email_"
+      />
+      <br />
       <br />
       <input
         type="text"
@@ -53,28 +97,27 @@ function LoginBox() {
       <br />
       <br />
       <input
-        type="confirm password"
+        type="password"
         placeholder="confirm Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={confirmPassword}
+        onChange={(e) => {setConfirmPassword(e.target.value);}}
         id="password_"
       />
+      {
+        !confirmMessage && <h1>Both passwords should match</h1>
+      }
       <br />
       <br />
-      <button onClick={handleForgotPassword} id="forgot_password">
-        Forgot Password / username ?
+      <button onClick={handleSignup} id="login_button">
+        Signup
       </button>
       <br />
-      <button onClick={handleLogin} id="login_button">
-        Login
-      </button>
       <br />
-      <br />
-      <button onClick={handleSignUp} id="signup_button">
-        Sign Up
+      <button onClick={handleCancelButton} id="signup_button">
+        Cancel
       </button>
     </div>
   ) : null;
 }
 
-export default LoginBox;
+export default SignupBox;
