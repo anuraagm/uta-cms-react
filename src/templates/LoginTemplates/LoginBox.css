@@ -1,18 +1,18 @@
-#forgot_password {
+.forgot_password {
     color: #025FA8;
     font-size: 13px;
     padding : 10px;
 }
 
 
-#login_button {
+.login_button {
     background-color: #CD4B12;
     padding : 2% 25%;
     color : white;
 }
 
 
-#signup_button {
+.signup_button {
     color : #CD4B12;
     border : 1px solid #CD4B12;
     padding : 2% 23%;
@@ -23,13 +23,13 @@ h2{
 }
 
 
-#email_ {
+.email_ {
     background-color: #F5F5F5;
     padding : 7px 30px;
 }
 
 
-#password_ {
+.password_ {
     background-color: #F5F5F5;
     padding: 7px 30px;
 }
