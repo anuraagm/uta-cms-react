@@ -40,6 +40,7 @@ function LoginBox({toggleLoginPopup, toggleSignupPopup}) {
       .catch((error) => {
         console.error(error);
       });
+      toggleLoginPopup();
     }
   };
 
