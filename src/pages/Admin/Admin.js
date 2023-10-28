@@ -8,6 +8,7 @@ import MessageTemplate from "../../templates/CommonTemplates/MessageTemplate";
 import AdminManageUsers from "../../templates/AdminTemplates/AdminManageUsers";
 import AdminAuditCourses from "../../templates/AdminTemplates/AdminAuditCourses";
 import AdminManageProgram from "../../templates/AdminTemplates/AdminManageProgram";
+import AddUser from "../../organisms/AddUser/AddUser";
 
 function Admin() {
 
@@ -18,6 +19,7 @@ function Admin() {
         localStorage.getItem("view") || ""
       ); // Initialize with localStorage value or "Course"
       const navigate = useNavigate(); // Get the navigation function
+      const [isCreatePopupVisible, setCreatePopupVisible] = useState(false);
     
       useEffect(() => {
         if (localStorage.getItem("view") === "Course") {
@@ -43,8 +45,12 @@ function Admin() {
       const resetLocalStorage = () => {
         localStorage.removeItem("view");
         localStorage.removeItem("current");
-        setCurrent("");
+        setCurrent("Dashboard");
         navigate("admin");
+      };
+
+      const toggleCreatePopup = () => {
+        setCreatePopupVisible(!isCreatePopupVisible);
       };
 
     return (
@@ -69,7 +75,7 @@ function Admin() {
                 }
                 </div>
                 <div className="Welcome text-xl ml-16 mb-8">
-                {view === "" && <AdminDashboard setOption={setCurrent}></AdminDashboard>}
+                {view === "Dashboard" && <AdminDashboard setOption={setCurrent}></AdminDashboard>}
                 {view === "Profile" && <ProfileTemplate></ProfileTemplate>}
                 {view === "Messages" && <MessageTemplate></MessageTemplate>}
                 {view === "Generate Performance Reports" && <AdminGrades></AdminGrades>}

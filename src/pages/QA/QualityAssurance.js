@@ -31,7 +31,6 @@ function QualityAssurance() {
       useEffect(() => {
         if (current !== "") {
           setView(current);
-          console.log("Current : ", current);
           localStorage.setItem("view", current);
           localStorage.setItem("current", current);
         }
@@ -40,8 +39,8 @@ function QualityAssurance() {
       const resetLocalStorage = () => {
         localStorage.removeItem("view");
         localStorage.removeItem("current");
-        setCurrent("");
-        setView("");
+        setCurrent("Dashboard");
+        setView("Dashboard");
         navigate("qa");
       };
 
@@ -67,7 +66,7 @@ function QualityAssurance() {
                 }
                 </div>
                 <div className="Welcome text-xl ml-16 mb-8">
-                {view === "" && <QADashboard setOption={setCurrent}></QADashboard>}
+                {view === "Dashboard" && <QADashboard setOption={setCurrent}></QADashboard>}
                 {view === "Profile" && <ProfileTemplate></ProfileTemplate>}
                 {view === "Messages" && <MessageTemplate></MessageTemplate>}
                 {view === "Generate Performance Reports" && <QAGrades></QAGrades>}

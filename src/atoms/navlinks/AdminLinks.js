@@ -39,6 +39,8 @@ const AdminLinks = ({ setOption }) => {
       console.error(error);
     });
     navigate("/");
+    localStorage.setItem("view","Dashboard");
+    localStorage.setItem("current","Dashboard");
   };
 
   const handleNavLinkClick = (navText) => {

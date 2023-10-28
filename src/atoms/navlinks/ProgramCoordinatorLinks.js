@@ -25,7 +25,6 @@ const ProgramCoordinatorLinks = ({ setOption }) => {
     const formData = {
       token: token
     }
-    console.log(formData);
     axios.post(`${api}logout`, formData, {
       headers: {
         'Content-Type': 'application/json',
@@ -40,6 +39,8 @@ const ProgramCoordinatorLinks = ({ setOption }) => {
       console.error(error);
     });
     navigate("/");
+    localStorage.setItem("view","Dashboard");
+    localStorage.setItem("current","Dashboard");
   };
 
   const handleNavLinkClick = (navText) => {

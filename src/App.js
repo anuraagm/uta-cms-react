@@ -24,7 +24,7 @@ function AppRouter() {
               <Route index element={<Home></Home>}></Route>
               <Route path="student" element={auth.role === "Student" ? <Student></Student> : <Navigate to="/" />}></Route>
               <Route path="qa" element={auth.role === "QA" ? <QualityAssurance></QualityAssurance> : <Navigate to="/" />}></Route>
-              <Route path="programcoordinator" element={auth.role === "programcoordinator" ? <ProgramCoordinator></ProgramCoordinator> : <Navigate to="/" />}></Route>
+              <Route path="programcoordinator" element={auth.role === "ProgramCoordinator" ? <ProgramCoordinator></ProgramCoordinator> : <Navigate to="/" />}></Route>
               <Route path="instructor" element={auth.role === "Instructor" ? <Instructor></Instructor> : <Navigate to="/" />}></Route>
               <Route path="admin" element={auth.role === "Admin" ? <Admin></Admin> : <Navigate to="/" />}></Route>
               <Route path="*" element={<Navigate to="/" />} />

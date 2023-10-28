@@ -1,12 +1,28 @@
 import React, { useState } from "react";
 import MemberCard from "../../organisms/MemberCard/MemberCard";
+import ButtonPrimary from "../../atoms/buttons/ButtonPrimary/ButtonPrimary";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import AddUser from "../../organisms/AddUser/AddUser";
+import "./AdminManageUsers.css";
 
 function AdminManageUsers() {
   const [current, setCurrent] = useState("Admin");
+  const api = process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
+  const [isCreatePopupVisible, setCreatePopupVisible] = useState(false);
 
   const chooseOption = (option) => {
     setCurrent(option);
   }
+
+  const addNewUser = () => {
+    toggleCreatePopup();
+  }
+
+  const toggleCreatePopup = () => {
+    setCreatePopupVisible(!isCreatePopupVisible);
+  };
 
   const adminUsers = [
     { id: 1, name: "Admin 1", info: "User Information 1" },
@@ -58,10 +74,13 @@ function AdminManageUsers() {
 
   return (
     <div className="AdminManageUsers">
-      <div className="PageTitle text-xl">
-        Choose user to view
-      </div>
-      <div className="SectionNavigation mt-12">
+      {isCreatePopupVisible && (
+        <div className="create-popup">
+          <AddUser setBoxVisibility={toggleCreatePopup} />
+        </div>
+      )}
+      <div className="PageTitle text-xl">Choose user to view</div>
+      <div className="SectionNavigation mt-12 flex">
         <button
           className="p-1 px-20 bg-gray-200 text-black text-xl sm:text-md hover:bg-gray-300 border border-gray-300 mb-2"
           onClick={() => chooseOption("StudentUsers")}
@@ -69,22 +88,27 @@ function AdminManageUsers() {
           Student
         </button>
         <button
-          className="p-1 px-20 bg-gray-200 text-black text-xl sm:text-md hover:bg-gray-300 border border-gray-300 mb-2"
+          className="p-1 px-20 bg-gray-200 text-black text-xl sm:text-md hover-bg-gray-300 border border-gray-300 mb-2"
           onClick={() => chooseOption("Instructor")}
         >
           Instructor
         </button>
-        <button className="p-1 px-20 bg-gray-200 text-black text-xl sm:text-md hover:bg-gray-300 border border-gray-300 mb-2"
-        onClick={() =>chooseOption("QAUsers")}
+        <button
+          className="p-1 px-20 bg-gray-200 text-black text-xl sm:text-md hover-bg-gray-300 border border-gray-300 mb-2"
+          onClick={() => chooseOption("QAUsers")}
         >
           QA
         </button>
+        <ButtonPrimary buttonText={"Add+"} clickFunction={addNewUser} />
       </div>
-      <div className='SelectionBody text-lg sm:text-md text-center bg-gray-200 md:mr-12' style={{ maxHeight: '400px', overflowY: 'auto' }}>
+      <div
+        className="SelectionBody text-lg sm:text-md text-center bg-gray-200 md:mr-12"
+        style={{ maxHeight: "400px", overflowY: "auto" }}
+      >
         <div className="UserCardContainer flex flex-wrap justify-center">
           {usersToDisplay.map((user) => (
             <div key={user.id} className="w-1/3 p-4">
-              <MemberCard user={user} type={"Admin"}/>
+              <MemberCard user={user} type={"Admin"} />
             </div>
           ))}
         </div>

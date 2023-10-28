@@ -34,7 +34,6 @@ function ProgramCoordinator() {
       useEffect(() => {
         if (current !== "") {
           setView(current);
-          console.log("Current : ", current);
           localStorage.setItem("view", current);
           localStorage.setItem("current", current);
         }
@@ -43,7 +42,8 @@ function ProgramCoordinator() {
       const resetLocalStorage = () => {
         localStorage.removeItem("view");
         localStorage.removeItem("current");
-        setCurrent("");
+        setCurrent("Dashboard");
+        setView("Dashboard");
         navigate("programcoordinator");
       };
 
@@ -69,7 +69,7 @@ function ProgramCoordinator() {
                 }
                 </div>
                 <div className="Welcome text-xl ml-16 mb-8">
-                {view === "" && <ProgramCoordinatorDashboard setOption={setCurrent}></ProgramCoordinatorDashboard>}
+                {view === "Dashboard" && <ProgramCoordinatorDashboard setOption={setCurrent}></ProgramCoordinatorDashboard>}
                 {view === "Profile" && <ProfileTemplate></ProfileTemplate>}
                 {view === "Messages" && <MessageTemplate></MessageTemplate>}
                 {view === "Generate Performance Reports" && <ProgramCoordinatorGrades></ProgramCoordinatorGrades>}

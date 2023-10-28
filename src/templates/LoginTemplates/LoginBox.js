@@ -32,7 +32,6 @@ function LoginBox({toggleLoginPopup, toggleSignupPopup}) {
       .then((response) => {
         // Handle the response if needed
         const token = response.data.data;
-        console.log(token);
         const tok = JSON.parse(atob(token.split('.')[1]));
         dispatch(setAuthToken(token));
         dispatch(setUserRole(tok.role));

@@ -25,6 +25,11 @@ function Home() {
   const [password, setPassword] = useState('');
   const auth = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    localStorage.setItem("view","Dashboard");
+    localStorage.setItem("current","Dashboard");
+  },[]);
+
   const toggleLoginPopup = () => {
     setLoginPopupVisible(!isLoginPopupVisible);
   };

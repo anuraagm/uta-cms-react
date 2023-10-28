@@ -32,7 +32,6 @@ function Student() {
       useEffect(() => {
         if (course !== "") {
           setView("Course");
-          console.log("Course : ", course);
           localStorage.setItem("view", "Course");
           localStorage.setItem("course", course);
         }
@@ -41,7 +40,6 @@ function Student() {
       useEffect(() => {
         if (current !== "") {
           setView(current);
-          console.log("Current : ", current);
           localStorage.setItem("view", current);
           localStorage.setItem("current", current);
         }
@@ -57,8 +55,8 @@ function Student() {
         localStorage.removeItem("course");
         localStorage.removeItem("current");
         setCourse("");
-        setCurrent("");
-        setView("");
+        setCurrent("Dashboard");
+        setView("Dashboard");
         navigate("student");
       };
 
@@ -82,11 +80,11 @@ function Student() {
           }
         </div>
         <div className="Welcome text-xl ml-16 mb-8">
-          {view === "" && <>Welcome User,</>}
+          {view === "Dashboard" && <>Welcome User,</>}
         </div>
       </div>
       {
-        view === "" && <StudentDashboard setStudentCourse={setCourse}></StudentDashboard>
+        view === "Dashboard" && <StudentDashboard setStudentCourse={setCourse}></StudentDashboard>
         ||
         view === "Course" && <StudentCourse courseName={course}></StudentCourse>
         ||

@@ -31,7 +31,6 @@ function ChatBot() {
   };
 
   const handleSendClick = () => {
-    console.log(userMessage);
     if (userMessage.trim() === '') return;
     const newUserMessage = { content: userMessage, role: 'user' };
     setMessages([...messages, newUserMessage]); // Append the user message to the existing messages

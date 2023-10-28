@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "./LoginBox.css";
+import "./AddUser.css";
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { setAuthToken, setUserRole } from '../../redux/authSlice';
 
-function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
+function AddUser({setBoxVisibility}) {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [userRole, setUserRole] = useState("");
   const [confirmMessage, setConfirmMessage] = useState(false);
-  const [isSignupBoxVisible, setIsSignupBoxVisible] = useState(true);
+  const [popUp, togglePopup] = useState(true);
   const api = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
 
@@ -29,45 +29,37 @@ function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
 
   const handleCloseButton = () => {
     // Toggle the visibility of the Signup box
-    toggleSignupPopup();
+    togglePopup(!popUp);
+    window.location.reload();
   };
 
-  const handleCancelButton = () => {
-    // Toggle the visibility of the Signup box
-    toggleLoginPopup();
-    toggleSignupPopup();
-  };
-
-  const handleSignup = (event) => {
+  const handleCreate = (event) => {
     event.preventDefault();
     // Add your Signup logic here
     if (confirmMessage && firstname !== "" && lastname !== "" && phone !== "" && email !== "") {
       console.log("Signup initiated");
 
-      // console.log(hashedPassword);
       const formData = {
         firstname: firstname,
         lastname: lastname,
         phone: phone,
         email: email,
-        password: password
+        password: password,
+        role: userRole,
       }
-      axios.post(`${api}signup`, formData, {
+      axios.post(`${api}createUser`, formData, {
         headers: {
           'Content-Type': 'application/json',
         },
       }) // Replace with your actual API endpoint
       .then((response) => {
         // Handle the response if needed
-        const token = response.data.data;
-        const tok = JSON.parse(atob(token.split('.')[1]));
-        dispatch(setAuthToken(token));
-        dispatch(setUserRole(tok.role));
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
       });
-      toggleSignupPopup();
+      togglePopup();
     } 
   };
 
@@ -77,13 +69,13 @@ function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
     console.log("Forgot password for:", email);
   };
 
-  return isSignupBoxVisible ? (
-    <div className="Signup-box">
+  return popUp ? (
+    <div className="create-box">
       <form action="">
         <button className="close-button" onClick={handleCloseButton}>X</button>
-        <h1 className='bg-blue text-white p-4 text-lg'>UTA Signup</h1>
+        <h1 className='bg-blue text-white p-4 text-lg'>Add New User</h1>
         <br />
-        <h2>Please signup to continue</h2>
+        <h2>Please enter the details </h2>
         <br />
         <input
           type="text"
@@ -142,22 +134,32 @@ function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
           onChange={(e) => {setConfirmPassword(e.target.value);}}
           className="password_"
         />
+        <select
+            name="role"
+            value={userRole}
+            onChange={(e) => {setUserRole(e.target.value);}}
+            className="email_ mt-8"
+            required
+            >
+            <option value="" disabled>Select</option>
+            <option value="Student">Student</option>
+            <option value="Instructor">Instructor</option>
+            <option value="Admin">Admin</option>
+            <option value="ProgramCoordinator">ProgramCoordinator</option>
+            <option value="QA">QA</option>
+        </select>
         {
           !confirmMessage && <h1>Both passwords should match</h1>
         }
         <br />
         <br />
-        <button onClick={handleSignup} className="login_button">
-          Signup
+        <button onClick={handleCreate} className="login_button">
+          Create
         </button>
         <br />
-        <br />
-        <button onClick={handleCancelButton} className="signup_button">
-          Cancel
-        </button>
       </form>
     </div>
   ) : null;
 }
 
-export default SignupBox;
+export default AddUser;
