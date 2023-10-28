@@ -1,8 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonPrimary from "../buttons/ButtonPrimary/ButtonPrimary";
+import { useDispatch } from "react-redux";
+import { clearAuthToken } from "../../redux/authSlice";
 
 const NavLink = ({ text, url, onClick }) => (
+
   <a
     href={url}
     className="block text-white p-2 hover:bg-blue-600"
@@ -13,9 +16,11 @@ const NavLink = ({ text, url, onClick }) => (
 );
 
 const StudentLinks = ({ setOption }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
+    dispatch(clearAuthToken());
     navigate("/");
   };
 

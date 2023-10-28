@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./LoginBox.css";
 import axios from 'axios';
-
+import { jwtDecode } from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+import { setAuthToken } from '../../redux/authSlice';
 
 function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
   const [firstname, setFirstName] = useState("");
@@ -12,6 +14,8 @@ function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmMessage, setConfirmMessage] = useState(false);
   const [isSignupBoxVisible, setIsSignupBoxVisible] = useState(true);
+  const api = process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (password === confirmPassword && password !== "" && confirmPassword !== "") {
@@ -33,10 +37,35 @@ function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
     toggleSignupPopup();
   };
 
-  const handleSignup = () => {
+  const handleSignup = (event) => {
+    event.preventDefault();
     // Add your Signup logic here
     if (confirmMessage && firstname !== "" && lastname !== "" && phone !== "" && email !== "") {
       console.log("Signup initiated");
+
+      // console.log(hashedPassword);
+      const formData = {
+        firstname: firstname,
+        lastname: lastname,
+        phone: phone,
+        email: email,
+        password: password
+      }
+      axios.post(`${api}signup`, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }) // Replace with your actual API endpoint
+      .then((response) => {
+        // Handle the response if needed
+        console.log(response.data.data);
+        const tok = JSON.parse(atob(response.data.data.split('.')[1]));
+        dispatch(setAuthToken(tok));
+        console.log(tok);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     } 
   };
 
@@ -106,7 +135,7 @@ function SignupBox({toggleSignupPopup, toggleLoginPopup}) {
         <br />
         <input
           type="password"
-          placeholder="confirm Password"
+          placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) => {setConfirmPassword(e.target.value);}}
           className="password_"

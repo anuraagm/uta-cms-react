@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonPrimary from "../buttons/ButtonPrimary/ButtonPrimary";
+import { useDispatch } from "react-redux";
+import { clearAuthToken } from "../../redux/authSlice";
 
 const NavLink = ({ text, url, onClick }) => (
   <a
@@ -13,9 +15,11 @@ const NavLink = ({ text, url, onClick }) => (
 );
 
 const QaLinks = ({ setOption }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
+    dispatch(clearAuthToken());
     navigate("/");
   };
 

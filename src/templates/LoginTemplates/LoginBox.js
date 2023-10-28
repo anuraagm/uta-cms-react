@@ -1,20 +1,45 @@
 import React, { useState } from 'react';
 import './LoginBox.css';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+import { setAuthToken } from '../../redux/authSlice';
 
 function LoginBox({toggleLoginPopup, toggleSignupPopup}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoginBoxVisible, setIsLoginBoxVisible] = useState(true);
+  const api = process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
   const handleCloseButton = () => {
     // Toggle the visibility of the login box
     toggleLoginPopup()
     // setIsLoginBoxVisible(!isLoginBoxVisible);
   };
 
-  const handleLogin = () => {
+  const handleLogin = (event) => {
+    event.preventDefault();
     // Add your login logic here
     if (email !== "" && password !== "") {
-      console.log('Logging in with:', email, password);
+      const formData = {
+        email: email,
+        password: password
+      }
+      axios.post(`${api}login`, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }) // Replace with your actual API endpoint
+      .then((response) => {
+        // Handle the response if needed
+        console.log(response.data.data);
+        const tok = JSON.parse(atob(response.data.data.split('.')[1]));
+        dispatch(setAuthToken(tok));
+        console.log(tok);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
   };
 

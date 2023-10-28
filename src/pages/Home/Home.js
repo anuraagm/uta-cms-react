@@ -10,6 +10,7 @@ import LoginBox from '../../templates/LoginTemplates/LoginBox';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import SignupBox from '../../templates/LoginTemplates/SignupBox';
+import { useSelector } from 'react-redux';
 
 function Home() {
 
@@ -22,11 +23,11 @@ function Home() {
   const [isSignupPopupVisible, setSignupPopupVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const auth = useSelector((state) => state.auth.authToken);
 
   useEffect(() => {
-    localStorage.clear();
-    localStorage.setItem("view","");
-  },[]);
+    console.log("auth",auth);
+  },[auth]);
 
   const toggleLoginPopup = () => {
     setLoginPopupVisible(!isLoginPopupVisible);
@@ -82,12 +83,11 @@ function Home() {
             up to date with all things Master’s Related 
             in the Computer Science Department.
           </h1>
-          <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"} clickFunction={toggleLoginPopup}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Student"} alignment={"md:float-left"} clickFunction={() => navigateToPage("student")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Instructor"} alignment={"md:float-left"} clickFunction={() => navigateToPage("instructor")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Admin"} alignment={"md:float-left"} clickFunction={() => navigateToPage("admin")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"Coordinator"} alignment={"md:float-left"} clickFunction={() => navigateToPage("programcoordinator")}></ButtonPrimary>
-          <ButtonPrimary buttonText={"QA"} alignment={"md:float-left"} clickFunction={() => navigateToPage("qa")}></ButtonPrimary>
+          {
+            auth == null 
+            ? <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"} clickFunction={toggleLoginPopup}></ButtonPrimary> 
+            : <ButtonPrimary buttonText={"Dashboard"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/")}></ButtonPrimary>
+          }
           {isLoginPopupVisible && (
             <div className="login-popup">
               <LoginBox toggleLoginPopup={toggleLoginPopup} toggleSignupPopup={toggleSignupPopup}/>
