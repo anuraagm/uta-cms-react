@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonPrimary from "../buttons/ButtonPrimary/ButtonPrimary";
-import { useDispatch } from "react-redux";
-import { clearAuthToken } from "../../redux/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { clearAuthToken, clearUserRole } from "../../redux/authSlice";
+import axios from 'axios';
 
 const NavLink = ({ text, url, onClick }) => (
 
@@ -18,9 +19,27 @@ const NavLink = ({ text, url, onClick }) => (
 const StudentLinks = ({ setOption }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const api = process.env.REACT_APP_API_URL;
+  const token = useSelector((state) => state.auth.authToken);
 
   const handleLogoutClick = () => {
-    dispatch(clearAuthToken());
+    const formData = {
+      token: token
+    }
+    console.log(formData);
+    axios.post(`${api}logout`, formData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }) // Replace with your actual API endpoint
+    .then((response) => {
+      // Handle the response if needed
+      dispatch(clearAuthToken());
+      dispatch(clearUserRole());
+    })
+    .catch((error) => {
+      console.error(error);
+    });
     navigate("/");
   };
 

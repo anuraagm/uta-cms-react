@@ -1,6 +1,6 @@
 // Router.js
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Student from './pages/Student/Student';
 import QualityAssurance from './pages/QA/QualityAssurance';
@@ -10,8 +10,11 @@ import ChatBot from './templates/CommonTemplates/ChatBot';
 import Admin from './pages/Admin/Admin';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 
 function AppRouter() {
+  const auth = useSelector((state) => state.auth);
+
   return (
     <Provider store={store}>
       <div className="App">
@@ -19,11 +22,12 @@ function AppRouter() {
           <Routes>
             <Route path='/'>
               <Route index element={<Home></Home>}></Route>
-              <Route path="student" element={<Student></Student>}></Route>
-              <Route path="qa" element={<QualityAssurance></QualityAssurance>}></Route>
-              <Route path="programcoordinator" element={<ProgramCoordinator></ProgramCoordinator>}></Route>
-              <Route path="instructor" element={<Instructor></Instructor>}></Route>
-              <Route path="admin" element={<Admin></Admin>}></Route>
+              <Route path="student" element={auth.role === "Student" ? <Student></Student> : <Navigate to="/" />}></Route>
+              <Route path="qa" element={auth.role === "QA" ? <QualityAssurance></QualityAssurance> : <Navigate to="/" />}></Route>
+              <Route path="programcoordinator" element={auth.role === "programcoordinator" ? <ProgramCoordinator></ProgramCoordinator> : <Navigate to="/" />}></Route>
+              <Route path="instructor" element={auth.role === "Instructor" ? <Instructor></Instructor> : <Navigate to="/" />}></Route>
+              <Route path="admin" element={auth.role === "Admin" ? <Admin></Admin> : <Navigate to="/" />}></Route>
+              <Route path="*" element={<Navigate to="/" />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -23,11 +23,7 @@ function Home() {
   const [isSignupPopupVisible, setSignupPopupVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const auth = useSelector((state) => state.auth.authToken);
-
-  useEffect(() => {
-    console.log("auth",auth);
-  },[auth]);
+  const auth = useSelector((state) => state.auth);
 
   const toggleLoginPopup = () => {
     setLoginPopupVisible(!isLoginPopupVisible);
@@ -38,13 +34,25 @@ function Home() {
   };
   
   const handleLogin = () => {
-    // Implement your login logic here
-    console.log('Logging in with:', email, password);
     toggleLoginPopup(); // Close the popup after login
   };
 
-  const navigateToPage = (loc) => {
-    navigate(loc);
+  const navigateToPage = (role) => {
+    if (role === "Student") {
+      navigate("student");
+    }
+    else if (role === "Instructor") {
+      navigate("instructor");
+    }
+    else if (role === "Admin") {
+      navigate("admin");
+    }
+    else if (role === "ProgramCoordinator") {
+      navigate("programcoordinator");
+    }
+    else {
+      navigate("qa");
+    }
   }  
 
   const images = [image1, image2, image3];
@@ -84,9 +92,9 @@ function Home() {
             in the Computer Science Department.
           </h1>
           {
-            auth == null 
+            auth.authToken == null 
             ? <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"} clickFunction={toggleLoginPopup}></ButtonPrimary> 
-            : <ButtonPrimary buttonText={"Dashboard"} alignment={"md:float-left"} clickFunction={() => navigateToPage("/")}></ButtonPrimary>
+            : <ButtonPrimary buttonText={"Dashboard"} alignment={"md:float-left"} clickFunction={() => navigateToPage(auth.role)}></ButtonPrimary>
           }
           {isLoginPopupVisible && (
             <div className="login-popup">

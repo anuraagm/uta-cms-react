@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './LoginBox.css';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { setAuthToken } from '../../redux/authSlice';
+import { setAuthToken, setUserRole } from '../../redux/authSlice';
 
 function LoginBox({toggleLoginPopup, toggleSignupPopup}) {
   const [email, setEmail] = useState('');
@@ -32,10 +31,11 @@ function LoginBox({toggleLoginPopup, toggleSignupPopup}) {
       }) // Replace with your actual API endpoint
       .then((response) => {
         // Handle the response if needed
-        console.log(response.data.data);
-        const tok = JSON.parse(atob(response.data.data.split('.')[1]));
-        dispatch(setAuthToken(tok));
-        console.log(tok);
+        const token = response.data.data;
+        console.log(token);
+        const tok = JSON.parse(atob(token.split('.')[1]));
+        dispatch(setAuthToken(token));
+        dispatch(setUserRole(tok.role));
       })
       .catch((error) => {
         console.error(error);
