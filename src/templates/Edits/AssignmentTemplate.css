@@ -1,0 +1,68 @@
+/* Popup.css */
+
+.app-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background: white;
+    width: 60%; /* Adjust the width of the popup content */
+    height: 60%; /* Adjust the height of the popup content */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h2 {
+    margin: 0;
+  }
+  
+  input {
+    width: 60%; /* Set the text input field to 60% of the popup's width */
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .ok-button {
+    background-color: #CD4B12;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto; /* Ensure the button width does not change */
+  }
+  
+  .cancel-button {
+    background-color: white;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto; /* Ensure the button width does not change */
+  }
+  

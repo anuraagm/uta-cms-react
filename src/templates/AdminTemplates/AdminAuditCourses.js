@@ -2,10 +2,20 @@ import { useState, useEffect } from "react";
 import SubjectCard from "../../molecules/Cards/SubjectCard/SubjectCard";
 import AdminCoursePage from "./AdminCoursePage";
 import ButtonPrimary from "../../atoms/buttons/ButtonPrimary/ButtonPrimary";
+import ButtonSecondary from "../../atoms/buttons/ButtonSecondary/ButtonSecondary";
+import AddCourses from '../EditTemplates/AddCourses';
 
 function AdminAuditCourses() {
   const [current, setCurrent] = useState("Admin");
   const [selectedCourse, setSelectedCourse] = useState(null);
+
+  //Add Popup
+  const [isAddPopupVisible, setAddPopupVisible] = useState(false);
+
+  const toggleAddPopup = () => {
+    setAddPopupVisible(!isAddPopupVisible)
+  }
+
 
   const chooseOption = (option) => {
     setCurrent(option);
@@ -78,6 +88,11 @@ function AdminAuditCourses() {
       <div className="PageTitle text-xl ml-16">
         Choose Course to audit
       </div>
+      {
+        isAddPopupVisible &&
+        <AddCourses toggle={toggleAddPopup}/>
+      }
+      <ButtonSecondary clickFunction={toggleAddPopup} buttonText={"Add"} />
       <div className="UserCardContainer flex flex-wrap justify-start">
         {currentSubjectsData.map((course, index) => (
           <div key={course.title} className="w-1/3">

@@ -2,9 +2,36 @@ import React, { useState } from 'react';
 import fileimg from './file.png';
 import ButtonPrimary from '../../atoms/buttons/ButtonPrimary/ButtonPrimary';
 import ButtonSecondary from '../../atoms/buttons/ButtonSecondary/ButtonSecondary';
+import OverviewTemplate from '../Edits/OverviewTemplate';
+import SyllabusTemplate from '../Edits/SyllabusTemplate';
+import AssignmentTemplate from '../Edits/AssignmentTemplate';
+import EditPopup from '../EditTemplates/EditPopup';
+import AddPopup from '../EditTemplates/AddPopup';
 
 
 function InstructorCourse({ courseName }) {
+
+
+
+  // Edit Popup
+  const [isEditPopupVisible, setEditPopupVisible] = useState(false);
+
+
+  const toggleEditPopup = () => {
+    setEditPopupVisible(!isEditPopupVisible)
+  }
+
+
+  //Add Popup
+  const [isAddPopupVisible, setAddPopupVisible] = useState(false);
+
+  const toggleAddPopup = () => {
+    setAddPopupVisible(!isAddPopupVisible)
+  }
+
+
+
+
 
   const [current, setCurrent] = useState("Overview");
 
@@ -20,6 +47,21 @@ function InstructorCourse({ courseName }) {
     <div className="InstructorCourse ml-16">
       <div className="PageTitle text-xl">{courseName}</div>
       <div className="SectionNavigation mt-12">
+        {
+          isEditPopupVisible && (
+            <EditPopup toggle={toggleEditPopup}/>
+          )
+        }
+
+        {
+          isAddPopupVisible && (
+            <AddPopup/>
+          )
+        }
+
+
+
+
         <button
           className="p-1 px-20 bg-gray-200 text-black text-xl sm:text-md hover:bg-gray-300 border border-gray-300 mb-2"
           onClick={() => chooseOption("Overview")}
@@ -68,31 +110,31 @@ function InstructorCourse({ courseName }) {
         {
           current === "Overview" && 
           <div className="m-8 text-right">
-            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+            <ButtonSecondary clickFunction={toggleEditPopup} buttonText={"Edit"} />
           </div>
           ||
           current === "Syllabus"  &&
           <div className="m-8 text-right">
-            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+            <ButtonSecondary clickFunction={toggleEditPopup} buttonText={"Edit"} />
           </div>
         }
         {
           current === "Assignments" &&
           <div className="m-8 text-right">
-            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Add+"} />
-            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+            <ButtonSecondary clickFunction={toggleAddPopup} buttonText={"Add+"} />
+            <ButtonSecondary clickFunction={toggleEditPopup} buttonText={"Edit"} />
           </div>
           || 
           current === "Tests"  &&
           <div className="m-8 text-right">
-            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Add+"} />
-            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+            <ButtonSecondary clickFunction={toggleAddPopup} buttonText={"Add+"} />
+            <ButtonSecondary clickFunction={toggleEditPopup} buttonText={"Edit"} />
           </div>
           || 
           current === "Modules"  &&
           <div className="m-8 text-right">
-            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Add+"} />
-            <ButtonSecondary clickFunction={() => console.log("Edit clicked")} buttonText={"Edit"} />
+            <ButtonSecondary clickFunction={toggleAddPopup} buttonText={"Add+"} />
+            <ButtonSecondary clickFunction={toggleEditPopup} buttonText={"Edit"} />
           </div>
         }
         <div className='SelectionBody text-lg sm:text-md text-center' style={{ maxHeight: '400px', overflowY: 'auto' }}>
