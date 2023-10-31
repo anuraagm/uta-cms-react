@@ -1,50 +1,84 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SubjectCard from "../../molecules/Cards/SubjectCard/SubjectCard";
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import RegisterCard from '../../organisms/RegisterCard/RegisterCard';
 
 function CourseCatalogue({ setStudentCourse }) {
-  const currentSubjectsData = [
-    {
-      title: "Web Data Management",
-      details: "CSE 5335-002",
-      semester: "Fall 2023",
-    },
-    {
-      title: "DBMS Models and Implementations",
-      details: "CSE 5331-003",
-      semester: "Fall 2023",
-    },
-    {
-      title: "Advanced Database Systems",
-      details: "CSE 6331-001",
-      semester: "Fall 2023",
-    },
-    {
-      title: "Machine Learning",
-      details: "CSE 6361-003",
-      semester: "Spring 2023",
-    },
-    {
-      title: "Data Mining",
-      details: "CSE 5336-001",
-      semester: "Spring 2023",
-    },
-    {
-      title: "Software Testing",
-      details: "CSE 5360-002",
-      semester: "Spring 2023",
-    },
-  ];
-
+  
+  const api = process.env.REACT_APP_API_URL;
+  const auth = useSelector((state) => state.auth);
+  const role = useSelector((state) => state.auth.role);
+  
+  const [currentSubjectsData, setCurrentSubjectsData] = useState([]); // State to store API response
   const colors = ['bg-yellow', 'bg-pink', 'bg-green'];
 
   const [searchInput, setSearchInput] = useState('');
+  const [loading, setLoading] = useState(true); // Loading state
 
-  const handleSubjectCardClick = (courseTitle) => {
-    setStudentCourse(courseTitle);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState('');
+  const [currentCourse, setCurrentCourse] = useState('');
+
+  useEffect(() => {
+    axios.get(`${api}courses`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.authToken}`,
+      },
+    })
+    .then((response) => {
+      setCurrentSubjectsData(JSON.parse(response.data.data));
+      setLoading(false); // Data has arrived, set loading to false
+    })
+    .catch((error) => {
+      console.error(error);
+      setLoading(false); // Handle errors and set loading to false
+    });
+  }, []);
+
+  const handleSubjectCardClick = (overview, id) => {
+    setModalContent(overview);
+    setShowModal(true);
+    setCurrentCourse(id);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalContent('');
+  };
+
+  const registerForCourse = () => {
+    console.log("registering");
+    
+    const tok = JSON.parse(atob(auth.authToken.split('.')[1]));
+    console.log(tok['user_id']);
+
+    const formData = {
+      userId: tok['user_id'],
+      courseId: currentCourse
+    }
+    
+    axios.post(`${api}registerUser`, formData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.authToken}`,
+      },
+    }) // Replace with your actual API endpoint
+    .then((response) => {
+      // Handle the response if needed
+      console.log(response);
+      localStorage.setItem("view","Dashboard");
+      localStorage.setItem("current","Dashboard");
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   };
 
   const filteredSubjects = currentSubjectsData.filter((course) =>
-    course.title.toLowerCase().includes(searchInput.toLowerCase())
+    course.course_name.toLowerCase().includes(searchInput.toLowerCase())
   );
 
   const subjectsPerRow = 3; // Number of subjects to display per row
@@ -62,21 +96,32 @@ function CourseCatalogue({ setStudentCourse }) {
         />
         <button className="btn btn-primary p-4 text-center">Search</button>
       </div>
-      <div className="CurrentSubjects text-lg md:text-md">
-        <div className="CurrentList md:flex flex-wrap">
-          {filteredSubjects.map((course, index) => (
-            <div key={index} className={`md:w-1/${subjectsPerRow}`}>
-              <SubjectCard
-                cardTitle={course.title}
-                classDetails={course.details}
-                semester={course.semester}
-                color={colors[index % colors.length]}
-                onClick={() => {}}
-              />
-            </div>
-          ))}
+      {loading ? (
+        <div>Loading...</div> // Render a loading indicator
+      ) : (
+        <div className="CurrentSubjects text-lg md:text-md">
+          <div className="CurrentList md:flex flex-wrap">
+            {filteredSubjects.map((course, index) => (
+              <div key={index} className={`md:w-1/${subjectsPerRow}`}>
+                <SubjectCard
+                  cardTitle={course.course_name}
+                  // classDetails={course.details}
+                  semester={course.course_semester}
+                  color={colors[index % colors.length]}
+                  onClick={() => handleSubjectCardClick(course.course_overview, course.course_id)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
+      {showModal && (
+        <RegisterCard onClose={closeModal} buttonFunction={registerForCourse}>
+          <div className="overflow-y-auto p-4">
+            <p>{modalContent}</p>
+          </div>
+        </RegisterCard>
+      )}
     </div>
   );
 }

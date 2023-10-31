@@ -10,7 +10,8 @@ import LoginBox from '../../templates/LoginTemplates/LoginBox';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import SignupBox from '../../templates/LoginTemplates/SignupBox';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearAuthToken, clearUserRole } from '../../redux/authSlice';
 
 function Home() {
 
@@ -18,6 +19,7 @@ function Home() {
   const aboutRef = useRef();
   const footerRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch;
 
   const [isLoginPopupVisible, setLoginPopupVisible] = useState(false);
   const [isSignupPopupVisible, setSignupPopupVisible] = useState(false);
@@ -97,7 +99,7 @@ function Home() {
             in the Computer Science Department.
           </h1>
           {
-            auth.authToken == null 
+            auth.authToken == null || auth == null
             ? <ButtonPrimary buttonText={"Login"} alignment={"md:float-left"} clickFunction={toggleLoginPopup}></ButtonPrimary> 
             : <ButtonPrimary buttonText={"Dashboard"} alignment={"md:float-left"} clickFunction={() => navigateToPage(auth.role)}></ButtonPrimary>
           }

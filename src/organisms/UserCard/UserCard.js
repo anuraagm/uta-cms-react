@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonPrimary from '../../atoms/buttons/ButtonPrimary/ButtonPrimary';
 import ButtonSecondary from '../../atoms/buttons/ButtonSecondary/ButtonSecondary';
 
-function UserCard() {
+function UserCard({ fname, lname, email, phone }) {
     return (
         <div className="UserCard md:p-16 p-8 bg-gray-200 m-16">
             <div className="Name md:flex md:mb-8">
@@ -13,8 +13,8 @@ function UserCard() {
                     <input
                         type="text"
                         id="firstName"
-                        className="mt-1 mr-16 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="First Name"
+                        className="mt-1 mr-16 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm font-bold text-gray-700::placeholder"
+                        placeholder={fname}
                         required
                     />
                 </div>
@@ -25,8 +25,8 @@ function UserCard() {
                     <input
                         type="text"
                         id="lastName"
-                        className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Last Name"
+                        className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm font-bold text-gray-700::placeholder"
+                        placeholder={lname}
                         required
                     />
                 </div>
@@ -39,8 +39,8 @@ function UserCard() {
                     <input
                         type="email"
                         id="email"
-                        className="mt-1 mr-16 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Enter Email"
+                        className="mt-1 mr-16 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm font-bold text-gray-700::placeholder"
+                        placeholder={email}
                         required
                     />
                 </div>
@@ -51,8 +51,8 @@ function UserCard() {
                     <input
                         type="text"
                         id="phoneNumber"
-                        className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Enter Phone Number"
+                        className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm font-bold text-gray-700::placeholder"
+                        placeholder={phone}
                         required
                     />
                 </div>
