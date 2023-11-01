@@ -28,7 +28,7 @@ function CourseCatalogue({ setStudentCourse }) {
       },
     })
     .then((response) => {
-      setCurrentSubjectsData(JSON.parse(response.data.data));
+      setCurrentSubjectsData(response.data.data);
       setLoading(false); // Data has arrived, set loading to false
     })
     .catch((error) => {

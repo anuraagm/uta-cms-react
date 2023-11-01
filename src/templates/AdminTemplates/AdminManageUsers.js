@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MemberCard from "../../organisms/MemberCard/MemberCard";
 import ButtonPrimary from "../../atoms/buttons/ButtonPrimary/ButtonPrimary";
 import axios from "axios";
@@ -11,6 +11,13 @@ function AdminManageUsers() {
   const api = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
   const [isCreatePopupVisible, setCreatePopupVisible] = useState(false);
+  const auth = useSelector((state) => state.auth);
+  const [users, setUsers] = useState();
+  const [loading, setLoading] = useState();
+  const [studentUsers, addStudentUsers] = useState([]);
+  const [adminUsers, addAdminUsers] = useState([]);
+  const [instructorUsers, addInstructorUsers] = useState([]);
+  const [qaUsers, addQAUsers] = useState([]);
 
   const chooseOption = (option) => {
     setCurrent(option);
@@ -24,52 +31,53 @@ function AdminManageUsers() {
     setCreatePopupVisible(!isCreatePopupVisible);
   };
 
-  const adminUsers = [
-    { id: 1, name: "Admin 1", info: "User Information 1" },
-    { id: 2, name: "Admin 2", info: "User Information 2" },
-    { id: 3, name: "Admin 3", info: "User Information 3" },
-    { id: 4, name: "Admin 4", info: "User Information 4" },
-    { id: 5, name: "Admin 5", info: "User Information 5" },
-    { id: 6, name: "Admin 6", info: "User Information 6" },
-    // Add more user objects as needed
-  ];
-
-  const instructorUsers = [
-    { id: 1, name: "Instructor 1", info: "User Information 1" },
-    { id: 2, name: "Instructor 2", info: "User Information 2" },
-    { id: 3, name: "Instructor 3", info: "User Information 3" },
-    { id: 4, name: "Instructor 4", info: "User Information 4" },
-    { id: 5, name: "Instructor 5", info: "User Information 5" },
-    { id: 6, name: "Instructor 6", info: "User Information 6" },
-  ];
-
-  const StudentUsers = [
-    { id: 1, name: "Student 1", info: "User Information 1" },
-    { id: 2, name: "Student 2", info: "User Information 2" },
-    { id: 3, name: "Student 3", info: "User Information 3" },
-    { id: 4, name: "Student 4", info: "User Information 4" },
-    { id: 5, name: "Student 5", info: "User Information 5" },
-    { id: 6, name: "Student 6", info: "User Information 6" },
-  ];
-
-  const QAUsers = [
-    { id: 1, name: "QA User 1", info: "User Information 1" },
-    { id: 2, name: "QA User 2", info: "User Information 2" },
-    { id: 3, name: "QA User 3", info: "User Information 3" },
-    { id: 4, name: "QA User 4", info: "User Information 4" },
-    { id: 5, name: "QA User 5", info: "User Information 5" },
-    { id: 6, name: "QA User 6", info: "User Information 6" },
-  ];
+  useEffect(() => {
+    axios.get(`${api}getAllUsers`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.authToken}`,
+      },
+    })
+    .then((response) => {
+      const users = response.data.data;
+      const studs = [];
+      const insts = [];
+      const adms = [];
+      const qas = [];
+      users.forEach(element => {
+        if (element['role'] == "Student") {
+          studs.push(element);
+        }  
+        else if (element['role'] == "Instructor") {
+          insts.push(element);
+        }
+        else if (element['role'] == "Admin") {
+          adms.push(element);
+        }
+        else if (element['role'] == "QA") {
+          qas.push(element);
+        }
+      });
+      addStudentUsers(studs);
+      addInstructorUsers(insts);
+      addAdminUsers(adms);
+      addQAUsers(qas);
+      // setLoading(false); // Data has arrived, set loading to false
+    })
+    .catch((error) => {
+      setLoading(false); // Handle errors and set loading to false
+    });
+  },[]);
 
   // const usersToDisplay = current === "Admin" ? adminUsers : instructorUsers;
   const usersToDisplay =
   current === "StudentUsers"
-    ? StudentUsers
+    ? studentUsers
     : current === "Instructor"
     ? instructorUsers
     : current === "QAUsers"
-    ? QAUsers
-    : StudentUsers;
+    ? qaUsers
+    : studentUsers;
 
 
   return (
@@ -107,7 +115,7 @@ function AdminManageUsers() {
       >
         <div className="UserCardContainer flex flex-wrap justify-center">
           {usersToDisplay.map((user) => (
-            <div key={user.id} className="w-1/3 p-4">
+            <div key={user.user_id} className="w-1/3 p-4">
               <MemberCard user={user} type={"Admin"} />
             </div>
           ))}

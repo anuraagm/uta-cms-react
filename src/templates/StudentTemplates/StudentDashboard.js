@@ -21,9 +21,7 @@ function StudentDashboard({ setStudentCourse }) {
     })
     .then((response) => {
       setStudentSubjects(response.data.data);
-      setLoading(false); // Data has arrived, set loading to false
-      // console.log(JSON.parse(response.data.data));
-      // console.log(response);
+      setLoading(false);
     })
     .catch((error) => {
       console.error(error);
