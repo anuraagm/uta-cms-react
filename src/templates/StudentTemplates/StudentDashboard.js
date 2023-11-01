@@ -49,7 +49,7 @@ function StudentDashboard({ setStudentCourse }) {
           <div>Loading...</div> // Render a loading indicator
         ) : (
         <div className="CurrentList md:flex flex-wrap">
-          {studentSubjects.map((course, index) => (
+          {studentSubjects?.map((course, index) => (
             <div key={index} className="md:w-1/3 md:px-2">
               <SubjectCard
                 cardTitle={course.course_name}
