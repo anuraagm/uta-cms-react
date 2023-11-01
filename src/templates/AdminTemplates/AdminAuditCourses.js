@@ -2,47 +2,37 @@ import { useState, useEffect } from "react";
 import SubjectCard from "../../molecules/Cards/SubjectCard/SubjectCard";
 import AdminCoursePage from "./AdminCoursePage";
 import ButtonPrimary from "../../atoms/buttons/ButtonPrimary/ButtonPrimary";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 function AdminAuditCourses() {
   const [current, setCurrent] = useState("Admin");
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [currentSubjectsData, setCurrentSubjectsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const auth = useSelector((state) => state.auth);
+  const api = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    axios.get(`${api}courses`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.authToken}`,
+      },
+    })
+    .then((response) => {
+      setCurrentSubjectsData(response.data.data);
+      setLoading(false); // Data has arrived, set loading to false
+    })
+    .catch((error) => {
+      console.error(error);
+      setLoading(false); // Handle errors and set loading to false
+    });
+  },[]);
 
   const chooseOption = (option) => {
     setCurrent(option);
   }
-
-  const currentSubjectsData = [
-    {
-      title: "Web Data Management",
-      details: "CSE 5335-002",
-      semester: "Fall 2023",
-    },
-    {
-      title: "DBMS Models and Implementations",
-      details: "CSE 5331-003",
-      semester: "Fall 2023",
-    },
-    {
-      title: "Advanced Database Systems",
-      details: "CSE 6331-001",
-      semester: "Fall 2023",
-    },
-    {
-      title: "Machine Learning",
-      details: "CSE 6361-003",
-      semester: "Spring 2023",
-    },
-    {
-      title: "Data Mining",
-      details: "CSE 5336-001",
-      semester: "Spring 2023",
-    },
-    {
-      title: "Software Testing",
-      details: "CSE 5360-002",
-      semester: "Spring 2023",
-    },
-  ];
 
   const colors = ['bg-yellow', 'bg-pink', 'bg-green'];
 
@@ -82,9 +72,8 @@ function AdminAuditCourses() {
         {currentSubjectsData.map((course, index) => (
           <div key={course.title} className="w-1/3">
             <SubjectCard
-              cardTitle={course.title}
-              classDetails={course.details}
-              semester={course.semester}
+              cardTitle={course.course_name}
+              semester={course.course_semester}
               color={colors[index % colors.length]}
               onClick={() => handleCardClick(course)}
             />
